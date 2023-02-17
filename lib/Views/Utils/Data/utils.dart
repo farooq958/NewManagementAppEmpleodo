@@ -1,7 +1,10 @@
 //snack bars //toast bar for ui
 
 import 'package:empleado_development/Controller/UtilsData/app_controllers.dart';
+import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppUtils{
 
@@ -47,13 +50,13 @@ static formatStringForMonths(int month){
    }
  }
 
-static parseDateFromString(String dateToEvaluate){
+static DateTime parseDateFromString(String dateToEvaluate){
    DateTime dateTimeCreatedAt = DateTime.parse(dateToEvaluate);
   // print("$dateTimeCreatedAt check");
    return dateTimeCreatedAt;
 
  }
- static getDifferenceInTwoDate({required DateTime firstDate,required DateTime secondDate})
+ static  getDifferenceInTwoDate({required DateTime firstDate,required DateTime secondDate})
  {
 
    final differenceInDays = secondDate.difference(firstDate).inDays;
@@ -71,5 +74,29 @@ static List<DateTime> getDatesList()
   //print(items);
   return items;
 }
+
+ static showCustomSnackBar({
+   required BuildContext context,
+   required String message,
+   //required bool theme,
+ }) {
+   final customSnackBar = SnackBar(
+     duration: const Duration(milliseconds: 800),
+     content: Text(
+       message,
+       style: GoogleFonts.poppins(
+         fontSize: 15.sp,
+         color: Colors.white.withOpacity(0.8),
+         fontWeight: FontWeight.w400,
+       ),
+     ),
+     backgroundColor: AppColors.blueContainerColor,
+     behavior: SnackBarBehavior.floating,
+   );
+
+   ScaffoldMessenger.of(context)
+     ..hideCurrentSnackBar()
+     ..showSnackBar(customSnackBar);
+ }
 
 }

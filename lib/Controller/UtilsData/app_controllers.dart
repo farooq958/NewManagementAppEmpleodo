@@ -19,6 +19,7 @@ static final TextEditingController leaveSubjectController= TextEditingController
   static final TextEditingController leaveBodyController= TextEditingController();
   static final TextEditingController leaveFromController= TextEditingController();
   static final TextEditingController leaveUpToController= TextEditingController();
+  static final TextEditingController chatMessageController= TextEditingController();
 
 
 }

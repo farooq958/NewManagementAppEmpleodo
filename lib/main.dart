@@ -8,7 +8,7 @@ import 'Views/Utils/Data/app_provider.dart';
 
 void main() {
   runApp(DevicePreview(
-    enabled: true,
+    enabled: false,
     builder: (context) => const MyApp(), // Wrap your app
   ),);
 }
@@ -20,15 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      //scaleByHeight: true,
       designSize: const Size(414, 719),
       minTextAdapt: true,
-      splitScreenMode: true,
+    //  splitScreenMode: true,
       useInheritedMediaQuery: true,
       builder: (context, child) {
         return MultiBlocProvider(
           providers:mainCubitProvidersList,
           child: MaterialApp(
-            useInheritedMediaQuery: true,
+            //useInheritedMediaQuery: true,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(useMaterial3: true),
             // home: const LoginScreen(),

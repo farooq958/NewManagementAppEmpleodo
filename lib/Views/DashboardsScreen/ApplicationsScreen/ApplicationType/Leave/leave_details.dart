@@ -40,6 +40,7 @@ class _LeaveDetailsState extends State<LeaveDetails> {
           InkWell(
 
               onTap: (){
+                clearControllers();
                context.read<LeaveDetailCubit>().setVisibiity(0);
                 Navigator.pop(context);
 
@@ -269,8 +270,10 @@ SizedBox(height: 10.sp,),
                 minWidth: 20.sp,
                 height: 55.sp,
                 onPressed: (){
-                  context.read<LeaveDetailCubit>().setVisibiity(1);
-                  
+                var check=  validator();
+                 if(check==true){ context.read<LeaveDetailCubit>().setVisibiity(1);
+                 // print("here");
+                 }
                 },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.sp)),
               child: Center(child: Text("Adjust",style: GoogleFonts.poppins(color: AppColors.greyColor),),),
@@ -401,16 +404,19 @@ SizedBox(height: 10.sp,),
 
     final DateTime? picked = await
     showDatePicker(
+      useRootNavigator: true,
         context: context, initialDate: DateTime.now(),
         firstDate: DateTime(2010,1,1), lastDate: DateTime(2050),
         helpText: "Select Date",
         fieldHintText: "Select Date",
-        fieldLabelText: "Date");
+        fieldLabelText: "Date",
+    );
 //var l=          //  CalendarDatePicker(initialDate: DateTime.now(), firstDate: DateTime(2010,1,1), lastDate: DateTime.now(), onDateChanged: (DateTime value) { print(value); },);
     // DatePickerDialog(initialDate: DateTime.now(), firstDate: DateTime(2010,1,1), lastDate: DateTime.now(),);
 
     if(picked!=null)
     {
+     //var check= validator();
       setState(() {
         isFrom==true?
         AppControllers.leaveFromController.text="${picked.year}-${AppUtils.formatStringForMonths(picked.month)}-${picked.day}":
@@ -418,6 +424,33 @@ SizedBox(height: 10.sp,),
       });
 
     }
+
+  }
+
+  bool validator() {
+
+    if(AppControllers.leaveFromController.text == "" || AppControllers.leaveUpToController.text == ""){
+
+      AppUtils.showCustomSnackBar(context: context, message: "Error: Please Provide Leave From/UpTo Date ");
+      return false;
+    }
+
+    else if(
+    (AppUtils.parseDateFromString(AppControllers.leaveUpToController.text).isBefore(AppUtils.parseDateFromString(AppControllers.leaveFromController.text)))==true){
+
+      AppUtils.showCustomSnackBar(context: context, message: "Error: UpTo Date must be after the from date ");
+      return false;
+    }
+    else{return true;}
+
+  }
+
+  void clearControllers() {
+
+    AppControllers.leaveFromController.clear();
+    AppControllers.leaveSubjectController.clear();
+    AppControllers.leaveUpToController.clear();
+    AppControllers.leaveBodyController.clear();
 
   }
 

@@ -1,5 +1,7 @@
+import 'package:empleado_development/Views/DashboardsScreen/InboxScreen/InboxDetails/inbox_detail.dart';
 import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
 import 'package:empleado_development/Views/Utils/Data/app_files.dart';
+import 'package:empleado_development/Views/Utils/PageTransitions/scale_page_transition.dart';
 import 'package:empleado_development/Views/Utils/copyrights_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +60,8 @@ class InboxScreen extends StatelessWidget {
                     child: MaterialButton(
                       onPressed: (){
                         ///inbox detail navigation
+                        Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ChatScreen(), alignment: Alignment.centerRight));
+
 
                       },
                       child: Row(

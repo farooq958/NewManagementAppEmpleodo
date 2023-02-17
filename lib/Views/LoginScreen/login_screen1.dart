@@ -25,12 +25,16 @@ class LoginScreen1 extends StatelessWidget {
         width: 1.sw,
         decoration: const BoxDecoration(
           image: DecorationImage(image: AssetImage(AppImages.dashboardBackgroundImage),fit: BoxFit.cover )
-          
+
         ),
-        child: Stack(
+        child: Column(
           children: [
-            ListView(
-              physics: const ClampingScrollPhysics(),
+            Expanded(
+              child: ListView(
+                primary: true,
+                    shrinkWrap: true,
+                   // reverse: true,
+                    physics: const ClampingScrollPhysics(),
 children: [
   SizedBox(height: 63.h,),
   Container(
@@ -46,24 +50,24 @@ children: [
     child: FittedBox(
       child: RichText(
       text: TextSpan(
-            children: [
-              TextSpan(
-                text: 'E',
-                style: GoogleFonts.poppins(
-                  color: AppColors.buttonColor,
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w600
-                ),
-              ),
-              TextSpan(
-                text: 'MPLEADO',
-                style: GoogleFonts.poppins(
-                  color: AppColors.greyColor,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w600
-                ),
-              ),
-            ],
+                  children: [
+                    TextSpan(
+                      text: 'E',
+                      style: GoogleFonts.poppins(
+                        color: AppColors.buttonColor,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'MPLEADO',
+                      style: GoogleFonts.poppins(
+                        color: AppColors.greyColor,
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w600
+                      ),
+                    ),
+                  ],
       ),
   ),
     ),
@@ -76,22 +80,22 @@ children: [
       height: 38.h,
       width: 258.w,
       decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.sp),
-            border: Border.all(color: Colors.white),
-            color: Colors.white
+                  borderRadius: BorderRadius.circular(10.sp),
+                  border: Border.all(color: Colors.white),
+                  color: Colors.white
       ),
 
       child:   TextField(
 controller: AppControllers.loginEmpleadoIdController,
        // selectionWidthStyle: BoxWidthStyle.max,
-            decoration: InputDecoration(
-              hintText: "Empleado ID",
-              hintStyle: GoogleFonts.poppins(color: AppColors.greyColor2),
-              border: InputBorder.none,
+                  decoration: InputDecoration(
+                    hintText: "Empleado ID",
+                    hintStyle: GoogleFonts.poppins(color: AppColors.greyColor2),
+                    border: InputBorder.none,
 contentPadding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 10.sp),
 prefixIcon: SvgPicture.asset(AppIcons.loginUserNameIcon,height: 18.sp,width: 15.sp,),
-              prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 18),
-            ),
+                    prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 18),
+                  ),
       ),
     ),
   ),
@@ -103,14 +107,29 @@ SizedBox(height: 5.sp,),
   SizedBox(height: 18.sp,),
 
   //Next Button
-  UnconstrainedBox(
-    child: InkWell(
-      onTap: (){
+  Center(
+    child: Container(
+      height: 49.sp,
+      width: 1.sw/1.6,
+      decoration: BoxDecoration(
 
-            debugPrint("next Tap");
-            Navigator.pushReplacement(context, CustomSlidePageRoute( direction: AxisDirection.left, child: const LoginScreen2()));
-      },
-      child:   LoginButton(textToDisplay: "Next", height: 38.h, width: 258.w,),
+              borderRadius:
+              BorderRadius.circular(2.sp),
+              color: AppColors.blueContainerColor,
+      ),
+      child: MaterialButton(
+              // hoverColor: AppColors.purpleColor,
+               color: AppColors.buttonColor,
+
+              // splashColor: AppColors.buttonColor,
+              elevation: 8,
+              onPressed: (){
+
+                    debugPrint("next Tap");
+                    Navigator.pushReplacement(context, CustomSlidePageRoute( direction: AxisDirection.left, child: const LoginScreen2()));
+              },
+              child:   LoginButton(textToDisplay: "Next", height: 38.h, width: 258.w,),
+      ),
     ),
   ),
 
@@ -118,13 +137,16 @@ SizedBox(height: 5.sp,),
 
 ],
 
+                  ),
             ),
-            Positioned(
-
-                bottom: 0.sp,
-                child: veevoCopyRightWidget())
+            veevoCopyRightWidget()
           ],
         ),
+            // Positioned(
+            //
+            //     bottom: 0.sp,
+            //     child: veevoCopyRightWidget())
+
 
       ),
 

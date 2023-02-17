@@ -50,6 +50,10 @@ dependencies:
   sticky_footer_scrollview: ^1.1.1
   gif_view: ^0.3.1
   flutter_rating_bar: ^4.0.1
+  flutter_chat_bubble: ^2.0.2
+  #avoid_keyboard: ^0.3.0
+  #keyboard_avoider: ^0.1.2
+  #keyboard_avoider: ^0.1.2
 
   #footer: ^0.0.4
 dev_dependencies:

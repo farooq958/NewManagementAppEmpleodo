@@ -37,6 +37,8 @@ class DashBoardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     final List<Attendance> chartData = [
       Attendance( day: 1, hours: 9),
       Attendance( day: 2, hours: 8),
@@ -367,6 +369,15 @@ physics:const NeverScrollableScrollPhysics(),
                                          SizedBox(
                                            height: 15.sp,
                                          ),
+                                           Padding(
+                                             padding:  EdgeInsets.symmetric(horizontal: 10.0.sp),
+                                             child: Text("Attendance History",style: GoogleFonts.poppins(
+                                                 color: AppColors.greyColor,
+                                                 fontWeight: FontWeight.w600,fontSize: 18.sp),),
+                                           ),
+                                         SizedBox(
+                                           height: 10.sp,
+                                         ),
                                           Center(
                                             child: Container(
                                               height: 55.sp,
@@ -407,7 +418,7 @@ physics:const NeverScrollableScrollPhysics(),
   builder: (context, dateTimeAdjusted) {
     return UnconstrainedBox(
                                            child: Container(
-                                             height: 1.sh<750? 1.sh / 1.7:1.sh/2.03,
+                                             height: 1.sh<750? 1.sh / 1.7:1.sh/2.05,  //2.03
                                              width: 1.sw / 1.1,
                                              decoration: BoxDecoration(
                                                  color: AppColors.primaryColor,
@@ -705,7 +716,7 @@ height: 1.sp,
 
                                            ],),
                                          ),
-                                         SizedBox(height: 60.sp,),
+                                         SizedBox(height: 30.sp,),
                                          Material(
                                            child: InkWell(
                                                onTap: (){

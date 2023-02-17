@@ -32,7 +32,15 @@ class ApplicationScreen extends StatelessWidget {
           centerTitle: true,
           title: Text("Application Type",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: AppColors.greyColor),),
           leading:
-          Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,))
+          InkWell(
+
+            onTap: (){
+              //context.read<LeaveDetailCubit>().setVisibiity(0);
+              Navigator.pop(context);
+
+            },
+
+              child: Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,)))
 
 
       ),

@@ -13,19 +13,6 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height:height,
-      width: width,
-      //padding: EdgeInsets.symmetric(horizontal: 80.sp),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.sp),
-          color: AppColors.buttonColor
-
-
-      ),
-
-      child:  Center(child: FittedBox(child: Text(textToDisplay,style: GoogleFonts.poppins(color: Colors.white,fontSize: 14.sp,fontWeight: FontWeight.w400),)),),
-
-    );
+    return Center(child: FittedBox(child: Text(textToDisplay,style: GoogleFonts.poppins(color: Colors.white,fontSize: 14.sp,fontWeight: FontWeight.w400),)),);
   }
 }

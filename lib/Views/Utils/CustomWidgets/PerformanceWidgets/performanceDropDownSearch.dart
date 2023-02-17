@@ -36,6 +36,7 @@ class _FlutterDropdownSearchState extends State<FlutterDropdownSearch> {
   List<String> _filteredList=[];
   List<String> _subFilteredList=[];
 
+  @override
   initState(){
     super.initState();
     _filteredList=widget.items!;

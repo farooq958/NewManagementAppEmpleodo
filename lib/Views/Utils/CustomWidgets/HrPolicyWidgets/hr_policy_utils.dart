@@ -30,10 +30,10 @@ class BuildPolicyFirstRows extends StatelessWidget {
     );
   }
 }
-class PolicyBriefCoulmnWidget extends StatelessWidget {
+class PolicyBriefColumnWidget extends StatelessWidget {
   final String string1;
   final String string2;
-  const PolicyBriefCoulmnWidget({
+  const PolicyBriefColumnWidget({
     Key? key, required this.string1, required this.string2,
   }) : super(key: key);
 
@@ -41,8 +41,8 @@ class PolicyBriefCoulmnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin:  EdgeInsets.symmetric(horizontal: 18.0.sp),
-      height: 70.sp,decoration:
-    BoxDecoration(color: AppColors.blueContainerColor,borderRadius: BorderRadius.circular(25.sp)),child: Column(children: [
+      height: 50.sp,decoration:
+    BoxDecoration(color: AppColors.blueContainerColor,borderRadius: BorderRadius.only( topLeft:Radius.circular(25.sp),bottomRight: Radius.circular(25.sp) )),child: Column(children: [
 
 
       Expanded(child: Row(
@@ -66,7 +66,7 @@ class PolicyBriefCoulmnWidget extends StatelessWidget {
         padding:  EdgeInsets.only(left: 25.0.sp),
         child: Align(
             alignment: Alignment.centerLeft,
-            child: Text(string2,style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w400,fontSize: 17.sp))),
+            child: Text(string2,style: GoogleFonts.poppins(color:Colors.white,fontWeight: FontWeight.w400,fontSize: 15.sp))),
       )
       ),
 

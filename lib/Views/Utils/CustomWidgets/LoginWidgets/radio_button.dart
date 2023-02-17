@@ -8,15 +8,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyRadioGroup extends StatelessWidget {
   final int? radioState;
-   const MyRadioGroup({super.key, this.radioState});
-
-
+  final BuildContext context;
+   const MyRadioGroup( {super.key, this.radioState, required this.context});
 
   @override
-  Widget build(BuildContext context) {
-    void _handleRadioValueChange(int? value) {
-      context.read<LoginRadiobuttonCubit>().changeRadio(value);
-    }
+  Widget build(BuildContext context1) {
+
     return SizedBox(
       height: 60.sp,
       width: 1.sw,
@@ -46,5 +43,11 @@ class MyRadioGroup extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _handleRadioValueChange(int? value) {
+    context.read<LoginRadiobuttonCubit>().changeRadio(value);
+
+
   }
 }

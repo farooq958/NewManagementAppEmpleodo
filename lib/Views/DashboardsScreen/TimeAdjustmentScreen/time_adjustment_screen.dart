@@ -33,7 +33,12 @@ class _TimeAdjustmentScreenState extends State<TimeAdjustmentScreen> {
           centerTitle: true,
           title: Text("Time Adjustment",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: AppColors.greyColor),),
           leading:
-          Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,))
+          InkWell(
+              onTap: (){
+clearController();
+                Navigator.pop(context);
+              },
+              child: Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,)))
 
 
       ),
@@ -301,6 +306,15 @@ readOnly: true,
      });
 
     }
+
+  }
+
+  void clearController() {
+
+    AppControllers.timeAdjustmentDateTimeController.clear();
+    AppControllers.timeAdjustmentOutTimeController.clear();
+    AppControllers.timeAdjustmentInTimeController.clear();
+    AppControllers.timeAdjustmentDescriptionController.clear();
 
   }
 }

@@ -117,10 +117,12 @@ class ContainerListTileDashBoard extends StatelessWidget {
 
         child:  ListTile(
 
-          leading: Padding(
-            padding:  EdgeInsets.only(bottom: 15.0.sp),
-            child: SvgPicture.asset(iconPath,height: 30.sp,),
-          ),
+          leading: Container(
+            padding: EdgeInsets.only(bottom: 10.sp),
+              height: 35.sp,
+// color: Colors.purpleAccent,
+ width: 35.sp,
+              child: FittedBox(child: SvgPicture.asset(iconPath,height: 35.sp,width: 35.sp,))),
           title:  Padding(
             padding: EdgeInsets.only(bottom: 15.0.sp),
             child: Text(titleText,style: GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w600),),

@@ -36,7 +36,12 @@ class PayRollScreen extends StatelessWidget {
           centerTitle: true,
           title: Text("Payroll",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: AppColors.greyColor),),
           leading:
-          Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,))
+          InkWell(
+              onTap: (){
+
+                Navigator.pop(context);
+              },
+              child: Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,)))
 
 
       ),
@@ -194,33 +199,35 @@ SizedBox(height: 20.sp,),
                                 ),
                           ),
                         ),
-                        InkWell(child: Container(  height: 40.sp,
-                          width: 120.sp,
+                        Container(
+                          height: 40.sp,
+                          width: 135.sp,
                           decoration: BoxDecoration(
-                              color: AppColors
-                                  .primaryColor,
-                              border: Border.all(
-                                  color: AppColors
-                                      .greyColor2),
-                              borderRadius:
-                              BorderRadius
-                                  .circular(
-                                  10.sp)),
-                        child: Row(
+                            color: AppColors
+                                .primaryColor,
+                            border: Border.all(
+                                color: AppColors
+                                    .greyColor2),
+                            borderRadius:
+                            BorderRadius
+                                .circular(
+                                10.sp)),
+                          child: MaterialButton(
+                            onPressed: () {  },
+                            child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
 
-                            Flexible(
+                            Expanded(
 
-                                flex: 2,
-                                child: FittedBox(child: Text("Download",style: GoogleFonts.poppins(color: AppColors.greyColor),))),
-                             Flexible(child: Icon(Icons.download,color: AppColors.buttonColor,))
+                                
+                                child: Text("Download",style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 13.sp),)),
+                             Icon(Icons.download,color: AppColors.buttonColor,size: 20.sp,)
 
                           ],
                         ),
-
-
-                        ),)
+                          ),
+                        )
 
                       ],
                     ),

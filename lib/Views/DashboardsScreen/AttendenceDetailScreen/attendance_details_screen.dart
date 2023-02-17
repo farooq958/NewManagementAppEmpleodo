@@ -73,7 +73,12 @@ class AttendanceDetailsScreen extends StatelessWidget {
           centerTitle: true,
           title: Text("Attendance",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: AppColors.greyColor),),
           leading:
-          Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,))
+          InkWell(
+              onTap: (){
+
+                Navigator.pop(context);
+              },
+              child: Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,)))
 
 
       ),
@@ -196,7 +201,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
                                 GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w500,fontSize: 14.sp)),
                             minimum: 0
                             ,
-                            maximum: 31
+                            maximum: 32
                         ),
                         primaryYAxis: NumericAxis(
 
@@ -205,7 +210,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
                                 text: "Hours",textStyle:
                             GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w500,fontSize: 14.sp)),
                             minimum: 0,
-                            maximum: 9
+                            maximum: 10,
                         ),
 
                         series: <ChartSeries<Attendance, int>>[

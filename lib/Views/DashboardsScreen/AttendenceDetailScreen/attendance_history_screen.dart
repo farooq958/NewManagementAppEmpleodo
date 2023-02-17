@@ -30,7 +30,13 @@ class AttendanceHistoryScreen extends  StatelessWidget {
           title: Text("Attendance History",
             style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: AppColors.greyColor),),
           leading:
-          Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,))
+          InkWell(
+
+              onTap: (){
+
+                Navigator.pop(context);
+              },
+              child: Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,)))
 
 
       ),

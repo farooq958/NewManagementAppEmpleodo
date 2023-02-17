@@ -137,7 +137,7 @@ class AttendanceDetailsTwoRowWidget extends StatelessWidget {
                 ),
               ): Padding(
                 padding:  EdgeInsets.only(right: 80.0.sp),
-                child: Align(alignment: Alignment.topCenter,child: FittedBox(child: Text(string2,style: GoogleFonts.poppins(color:AppColors.greyColor,fontWeight: FontWeight.w400,fontSize: 15.sp)))),
+                child: Align(alignment: Alignment.topCenter,child: FittedBox(child: Text(string2,style: GoogleFonts.poppins(color:AppColors.greyColor,fontWeight: FontWeight.w600,fontSize: 15.sp)))),
               )),
         )
         ),
