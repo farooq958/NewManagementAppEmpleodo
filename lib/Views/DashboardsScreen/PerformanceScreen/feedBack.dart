@@ -201,33 +201,39 @@ class FeedbackScreen extends StatelessWidget {
                ),
              ),
            ),
-           Material(
-             child: InkWell(
-               splashFactory: InkSparkle.splashFactory,
-               highlightColor: Colors.transparent,
-               splashColor: AppColors.primaryColor,
-               onTap: () {
-                 debugPrint('submit button is pressed');
-                 //context.read<RegisterCubit>().registerDevice(AppControllers.addNewDeviceDeviceNameController.text, AppControllers.addNewDeviceDeviceIdController.text, "63a4307cf75285ab970a4ffa", double.parse(AppControllers.addNewDeviceDeviceLongController.text) , double.parse(AppControllers.addNewDeviceDeviceLatController.text));
+           Padding(
+             padding:  EdgeInsets.only(right: 15.0.sp),
+             child: Material(
+               color: Colors.transparent,
+               child: InkWell(
+                 splashFactory: InkRipple.splashFactory,
+                 hoverColor: AppColors.purpleColor,
+                 highlightColor: AppColors.buttonColor.withOpacity(0.6),
+                 splashColor: AppColors.buttonColor,
+                 onTap: () {
+                   debugPrint('submit button is pressed');
+                   //context.read<RegisterCubit>().registerDevice(AppControllers.addNewDeviceDeviceNameController.text, AppControllers.addNewDeviceDeviceIdController.text, "63a4307cf75285ab970a4ffa", double.parse(AppControllers.addNewDeviceDeviceLongController.text) , double.parse(AppControllers.addNewDeviceDeviceLatController.text));
 
 
-               },
-               child: UnconstrainedBox(
-                 child: Container(
-                   height: 45.sp,
-                   width: 100.sp,
-                   alignment: Alignment.center,
-                   // margin: EdgeInsets.symmetric(horizontal: 50.sp),
-                   decoration: BoxDecoration(
-                     color: AppColors.buttonColor,
-                     borderRadius: BorderRadius.circular(10.sp),
-                   ),
-                   child: Text(
-                     'Submit',
-                     style: GoogleFonts.poppins(
-                       color: Colors.white,
-                       fontWeight: FontWeight.normal,
-                       fontSize: 18.sp,
+                 },
+                 child: UnconstrainedBox(
+                   child: Container(
+                     //transform: Matrix4.translationValues(10, 10, 19),
+                     height: 45.sp,
+                     width: 100.sp,
+                     alignment: Alignment.center,
+                     // margin: EdgeInsets.symmetric(horizontal: 50.sp),
+                     decoration: BoxDecoration(
+                       color: AppColors.buttonColor,
+                       borderRadius: BorderRadius.circular(10.sp),
+                     ),
+                     child: Text(
+                       'Submit',
+                       style: GoogleFonts.poppins(
+                         color: Colors.white,
+                         fontWeight: FontWeight.normal,
+                         fontSize: 18.sp,
+                       ),
                      ),
                    ),
                  ),

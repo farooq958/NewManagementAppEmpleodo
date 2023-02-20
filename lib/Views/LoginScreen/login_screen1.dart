@@ -7,7 +7,6 @@ import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
 import 'package:empleado_development/Views/Utils/Data/app_files.dart';
 import 'package:empleado_development/Views/Utils/PageTransitions/slide_page_transition.dart';
 import 'package:empleado_development/Views/Utils/copyrights_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

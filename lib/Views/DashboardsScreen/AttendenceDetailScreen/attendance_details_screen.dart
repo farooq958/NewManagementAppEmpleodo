@@ -196,7 +196,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
 
                         primaryXAxis: NumericAxis(
                             interval: 5,
-                            title: AxisTitle(text: "Day"
+                            title: AxisTitle(text: "Month Days"
                                 ,textStyle:
                                 GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w500,fontSize: 14.sp)),
                             minimum: 0
@@ -224,6 +224,8 @@ class AttendanceDetailsScreen extends StatelessWidget {
                               xValueMapper: (Attendance data, _) => data.day,
                               yValueMapper: (Attendance data, _) => data.hours
                               ,
+                              pointColorMapper: (Attendance data, _) => data.hours<=3?AppColors.redColor:data.hours<=6?AppColors.yellowColor:AppColors.greenColor,
+
                               markerSettings:  MarkerSettings(
                                   borderColor: AppColors.purpleColor,
                                   isVisible: true,
@@ -317,7 +319,10 @@ SizedBox(
 
             Image.asset("assets/images/dividerAttendanceHistory.png"),
             SizedBox(height: 5.sp,),
-            Text("Absentees/Leaves",style: GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w600),),
+            Padding(
+              padding:  EdgeInsets.only(left: 15.0.sp),
+              child: Text("Absentees/Leaves",style: GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w600),),
+            ),
             SizedBox(height: 5.sp,),
             Padding(
               padding:  EdgeInsets.only(left: 30.0.sp),

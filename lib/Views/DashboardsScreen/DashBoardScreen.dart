@@ -531,7 +531,7 @@ physics:const NeverScrollableScrollPhysics(),
 // ),
                                                    primaryXAxis: NumericAxis(
                                                      interval: 5,
-                                                     title: AxisTitle(text: "Day"
+                                                     title: AxisTitle(text: "Month Days"
                                                          ,textStyle:
                                                          GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w500,fontSize: 14.sp)),
                                                      minimum: 0
@@ -658,7 +658,7 @@ borderColor: AppColors.primaryColor,
                                                            Navigator.push(context, ScalePageTransition.scalePageTransition(page: const AttendanceDetailsScreen(), alignment: Alignment.centerLeft));
 
                                                          },
-                                                         child: Center(child: Text("View details",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
+                                                         child: Center(child: Text("View Details",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
                                                        ),
                                                      ),
                                                    ),
@@ -823,7 +823,7 @@ height: 1.sp,
                                                    )),
                                                    Center(
                                                        child: Text(
-                                                     "Empleado Id",
+                                                     "Empleado ID",
                                                      style: GoogleFonts.poppins(
                                                          fontSize: 13.sp,
                                                          fontWeight:

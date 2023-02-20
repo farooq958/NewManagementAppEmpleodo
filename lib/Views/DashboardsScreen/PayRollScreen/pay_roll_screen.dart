@@ -175,6 +175,7 @@ SizedBox(height: 20.sp,),
 
                                       child: Row(
                                         children: [
+                                          SizedBox(width: 5.sp,),
                                           Center(
                                               child: FittedBox(
                                                   child: Text(
@@ -188,7 +189,7 @@ SizedBox(height: 20.sp,),
                                                         fontSize:
                                                         15.sp),
                                                   ))),
-                                          SizedBox(width: 10.sp,),
+                                          SizedBox(width: 5.sp,),
                                           SvgPicture.asset(AppIcons.attendanceHistoryIcon,height: 13.sp,color: AppColors.greyColor2,),
 
                                         ],

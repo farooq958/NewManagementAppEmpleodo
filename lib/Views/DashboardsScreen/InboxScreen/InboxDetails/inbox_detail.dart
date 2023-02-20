@@ -36,7 +36,7 @@ class ChatScreen extends StatelessWidget {
             // automaticallyImplyLeading: true,
             centerTitle: true,
             title: Text(
-              "Chat",
+              "Chats",
               style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600, color: AppColors.greyColor),
             ),
@@ -62,7 +62,8 @@ class ChatScreen extends StatelessWidget {
 
                 children: [
                   SizedBox(
-                    height: 100.sp,
+//color: AppColors.purpleColor,
+                    height: 50.sp,
                     width: 1.sw,
                     child: Row(
                       children: <Widget>[
@@ -102,7 +103,7 @@ class ChatScreen extends StatelessWidget {
                                       alignment: Alignment.bottomCenter,
                                       child: FittedBox(
                                           child: Text(
-                                        "Muhammad Farooq Khan",
+                                        "Muhammad Farooq",
                                         style: GoogleFonts.poppins(
                                             color: AppColors.greyColor,
                                             fontWeight: FontWeight.w600),
@@ -114,7 +115,7 @@ class ChatScreen extends StatelessWidget {
                                           child: Text('Time Adjustment',
                                               style: GoogleFonts.poppins(
                                                   color:
-                                                      AppColors.greyColor2)))))
+                                                      AppColors.greyColor2,fontSize: 15.sp)))))
                             ],
                           ),
                         ),
