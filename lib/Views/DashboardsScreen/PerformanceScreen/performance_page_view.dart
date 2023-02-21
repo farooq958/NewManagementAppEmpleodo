@@ -177,7 +177,7 @@ child: Row(
 
                 child: CircleAvatar(
                     backgroundColor: AppColors.greenColor,
-                    backgroundImage: const AssetImage("assets/images/face 1.png"),
+                    backgroundImage: const AssetImage("assets/images/face3.jpeg"),
                     maxRadius: 30.sp ),
               ),
             ),

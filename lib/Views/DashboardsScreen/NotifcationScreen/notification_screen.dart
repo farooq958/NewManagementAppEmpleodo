@@ -31,7 +31,7 @@ class NotificationScreen extends StatelessWidget {
 
 
       ),
-      body: Container(height: 1.sh,width: 1.sw,color: AppColors.primaryColor,child: const Center(child: Text("No Notification"),), ),
+      body: Container(height: 1.sh,width: 1.sw,color: AppColors.primaryColor,child: const Center(child: Text("No Notifications"),), ),
 
 
     );
