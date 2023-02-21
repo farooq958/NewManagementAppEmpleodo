@@ -83,9 +83,13 @@ class ChatScreen extends StatelessWidget {
                               ),
                               child: CircleAvatar(
                                   backgroundColor: AppColors.greenColor,
+
+                                  maxRadius: 30.sp,
                                   backgroundImage: const AssetImage(
-                                      "assets/images/face 1.png"),
-                                  maxRadius: 30.sp),
+                                      "assets/images/face3.jpeg"),
+
+
+                              ),
                             ),
                           ),
                         ),
@@ -103,7 +107,7 @@ class ChatScreen extends StatelessWidget {
                                       alignment: Alignment.bottomCenter,
                                       child: FittedBox(
                                           child: Text(
-                                        "Muhammad Farooq",
+                                        "Muhammad Farooq ",
                                         style: GoogleFonts.poppins(
                                             color: AppColors.greyColor,
                                             fontWeight: FontWeight.w600),
@@ -115,7 +119,7 @@ class ChatScreen extends StatelessWidget {
                                           child: Text('Time Adjustment',
                                               style: GoogleFonts.poppins(
                                                   color:
-                                                      AppColors.greyColor2,fontSize: 15.sp)))))
+                                                      AppColors.greyColor2,fontSize: 14.sp)))))
                             ],
                           ),
                         ),
@@ -130,7 +134,7 @@ class ChatScreen extends StatelessWidget {
                                       child: Text(
                                         "wed Feb 8 2023",
                                         style: GoogleFonts.poppins(
-                                            color: AppColors.greyColor2),
+                                            color: AppColors.greyColor2,fontSize: 14.sp),
                                       ))),
                               Expanded(
                                   child: Align(
@@ -145,7 +149,7 @@ class ChatScreen extends StatelessWidget {
                                           child: Icon(
                                             Icons.remove_red_eye_sharp,
                                             color: AppColors.yellowColor,
-                                            size: 30.sp,
+                                            size: 25.sp,
                                           )))),
                             ],
                           ),

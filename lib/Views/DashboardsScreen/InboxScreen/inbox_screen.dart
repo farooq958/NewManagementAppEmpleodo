@@ -35,13 +35,20 @@ class InboxScreen extends StatelessWidget {
             style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600, color: AppColors.greyColor),
           ),
-          leading: Center(
-              child: Image.asset(
-            AppImages.backButton,
-            fit: BoxFit.fitHeight,
-            height: 20.sp,
-            width: 20.sp,
-          ))),
+          leading: InkWell(
+            onTap: (){
+
+              Navigator.pop(context);
+
+            },
+            child: Center(
+                child: Image.asset(
+              AppImages.backButton,
+              fit: BoxFit.fitHeight,
+              height: 20.sp,
+              width: 20.sp,
+            )),
+          )),
       body: StickyFooterScrollView(
         footer: veevoCopyRightWidget(),
         itemCount: 20,
@@ -83,7 +90,7 @@ class InboxScreen extends StatelessWidget {
                                 child: CircleAvatar(
                                     backgroundColor: AppColors.greenColor,
                                     backgroundImage: const AssetImage(
-                                        "assets/images/face 1.png"),
+                                        "assets/images/face3.jpeg"),
                                     maxRadius: 30.sp),
                               ),
                             ),

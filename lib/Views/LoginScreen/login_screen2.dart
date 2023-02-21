@@ -18,8 +18,11 @@ import 'package:sticky_footer_scrollview/sticky_footer_scrollview.dart';
 class LoginScreen2 extends StatelessWidget {
   const LoginScreen2({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
+
     return  Scaffold(
       resizeToAvoidBottomInset: true,
       body:
@@ -130,26 +133,14 @@ SizedBox(height: 6.h,),
                                       child: Container(
                                         padding: EdgeInsets.symmetric(horizontal: 5.sp),
                                         height: 38.h,
-                                        width: 258.w,
+                                        width: 290.w,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(10.sp),
                                             border: Border.all(color: Colors.white),
                                             color: Colors.white
                                         ),
 
-                                        child:   TextField(
-                                          obscureText: true,
-                                          controller: AppControllers.loginPinCodeController,
-                                          // selectionWidthStyle: BoxWidthStyle.max,
-                                          decoration: InputDecoration(
-                                            hintText: "Pin Code/Password",
-                                            hintStyle: GoogleFonts.poppins(color: AppColors.greyColor2),
-                                            border: InputBorder.none,
-                                            contentPadding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 10.sp),
-                                            prefixIcon: SvgPicture.asset(AppIcons.loginPinCodeIcon,height: 18.sp,width: 15.sp,),
-                                            prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 18),
-                                          ),
-                                        ),
+                                        child:   const LoginScreen2TextField(),
                                       ),
                                     ),
                                     SizedBox(height: 11.sp,),
@@ -193,5 +184,52 @@ SizedBox(height: 6.h,),
     );
 
 
+  }
+}
+
+class LoginScreen2TextField extends StatefulWidget {
+  const LoginScreen2TextField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<LoginScreen2TextField> createState() => _LoginScreen2TextFieldState();
+}
+
+class _LoginScreen2TextFieldState extends State<LoginScreen2TextField> {
+  bool passwordToShow=true;
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      maxLines: 1,
+      obscureText: passwordToShow,
+      controller: AppControllers.loginPinCodeController,
+      // selectionWidthStyle: BoxWidthStyle.max,
+      decoration: InputDecoration(
+        hintText: "Pin Code/Password",
+        hintStyle: GoogleFonts.poppins(color: AppColors.greyColor2,fontSize: 12.sp),
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 17.sp),
+        prefixIcon: SvgPicture.asset(AppIcons.loginPinCodeIcon,height: 18.sp,width: 15.sp,),
+        prefixIconConstraints: const BoxConstraints(minWidth: 30, minHeight: 18),
+    suffixIcon:  MaterialButton(
+        minWidth: 8.sp,
+        onPressed: () {
+          if(passwordToShow==true) {
+            passwordToShow=false;
+          }
+          else{
+            passwordToShow=true;
+
+          }
+setState(() {
+
+});
+
+        },
+    child:   Icon(Icons.remove_red_eye_rounded,color: AppColors.blueContainerColor,))
+
+      ),
+    );
   }
 }

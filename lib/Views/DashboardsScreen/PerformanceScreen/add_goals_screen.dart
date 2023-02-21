@@ -40,7 +40,12 @@ class AddGoalsScreen extends StatelessWidget {
           centerTitle: true,
           title: Text("Add Goals",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: AppColors.greyColor),),
           leading:
-          Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,))
+          InkWell(
+              onTap: (){
+
+                Navigator.pop(context);
+              },
+              child: Center(child: Image.asset(AppImages.backButton,fit: BoxFit.fitHeight,height: 20.sp,width: 20.sp,)))
 
 
       ),
@@ -463,33 +468,31 @@ SizedBox(height: 10.sp,),
   ///Submit Button
   ///
   Container(
-    margin: EdgeInsets.symmetric(horizontal: 10.sp),
-    child: Material(
-      child: InkWell(
-        splashFactory: InkSparkle.splashFactory,
-        highlightColor: Colors.transparent,
-        splashColor: AppColors.primaryColor,
-        onTap: () {
-          debugPrint('submit button is pressed');
-          //context.read<RegisterCubit>().registerDevice(AppControllers.addNewDeviceDeviceNameController.text, AppControllers.addNewDeviceDeviceIdController.text, "63a4307cf75285ab970a4ffa", double.parse(AppControllers.addNewDeviceDeviceLongController.text) , double.parse(AppControllers.addNewDeviceDeviceLatController.text));
+    padding: EdgeInsets.symmetric(horizontal: 10.sp),
+    child: MaterialButton(
+      elevation: 15.0,
 
 
-        },
-        child: Container(
-          height: 45.sp,
-          alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(horizontal: 50.sp),
-          decoration: BoxDecoration(
-            color: AppColors.buttonColor,
-            borderRadius: BorderRadius.circular(10.sp),
-          ),
-          child: Text(
-            'Submit',
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontWeight: FontWeight.normal,
-              fontSize: 18.sp,
-            ),
+      onPressed: () {
+        debugPrint('submit button is pressed');
+        //context.read<RegisterCubit>().registerDevice(AppControllers.addNewDeviceDeviceNameController.text, AppControllers.addNewDeviceDeviceIdController.text, "63a4307cf75285ab970a4ffa", double.parse(AppControllers.addNewDeviceDeviceLongController.text) , double.parse(AppControllers.addNewDeviceDeviceLatController.text));
+
+
+      },
+      child: Container(
+        height: 45.sp,
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 50.sp),
+        decoration: BoxDecoration(
+          color: AppColors.buttonColor,
+          borderRadius: BorderRadius.circular(10.sp),
+        ),
+        child: Text(
+          'Submit',
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontWeight: FontWeight.normal,
+            fontSize: 18.sp,
           ),
         ),
       ),
