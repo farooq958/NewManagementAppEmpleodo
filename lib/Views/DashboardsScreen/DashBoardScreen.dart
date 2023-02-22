@@ -1,5 +1,6 @@
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/animation_scale_dart_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/date_picking_cubit.dart';
+import 'package:empleado_development/Controller/Repository/repo.dart';
 import 'package:empleado_development/Views/DashboardsScreen/AttendenceDetailScreen/attendance_history_screen.dart';
 import 'package:empleado_development/Views/DashboardsScreen/HrPolicyScreen/hr_policy_screen.dart';
 import 'package:empleado_development/Views/DashboardsScreen/InboxScreen/inbox_screen.dart';
@@ -81,10 +82,10 @@ class DashBoardScreen extends StatelessWidget {
    // ScrollController scrollController=ScrollController(initialScrollOffset: 0.0);
     return  WillPopScope(
       onWillPop: () async {
-        if(checkWill==0)
+        if(Repository.onWillCheck==0)
           {
             AppUtils.showCustomSnackBar(context: context, message: "Press Again To Exit");
-            checkWill=1;
+           Repository.onWillPopCheck(1);
           return false;
           }
         else
@@ -296,7 +297,7 @@ physics:const NeverScrollableScrollPhysics(),
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(40.sp),
                                       onTap: (){
-                                        Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ImagePickerWidget(imagePath:"assets/images/face3.jpeg"), alignment: Alignment.bottomCenter));
+                                        Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ImagePickerWidget(imagePath:"assets/images/face3.jpeg"), alignment: Alignment.centerLeft));
                                        // print("profile tapeed");
                                       },
                                       child: CircleAvatar(
@@ -413,19 +414,17 @@ physics:const NeverScrollableScrollPhysics(),
                                              height: 10.sp,
                                            ),
                                             Center(
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: 55.sp,
                                                 width: 1.sw / 1.9,
-                                                decoration: BoxDecoration(
+                                              //   decoration: BoxDecoration(
+                                              //
+                                              //   borderRadius:
+                                              //       BorderRadius.circular(2.sp),
+                                              //   color: AppColors.primaryColor,
+                                              // ),
+                                                child:  ElevatedButton(
 
-                                                borderRadius:
-                                                    BorderRadius.circular(2.sp),
-                                                color: AppColors.primaryColor,
-                                              ),
-                                                child:  MaterialButton(
-                                                  hoverColor: AppColors.purpleColor,
-                                                  highlightColor: AppColors.buttonColor,
-                                                  splashColor: AppColors.buttonColor,
                                                   onPressed: () {
                                                     Navigator.push(context, ScalePageTransition.scalePageTransition(page: const AttendanceHistoryScreen(), alignment: Alignment.center));
 
@@ -621,82 +620,73 @@ borderColor: AppColors.primaryColor,
                                            SizedBox(height: 10.sp,),
                                            Row(
                                              children: [
-                                               Expanded(child:  Align(
-                                                 child: Container(
-                                                   height: 45.sp,
-                                                   width: 100.sp,
-                                                   decoration:BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(20.sp)),
-                                                   child: Material(
-                                                     color: Colors.transparent,
-                                                     shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.sp)),
-                                                     child: InkWell(
-                                                       splashFactory: InkRipple.splashFactory,
-                                                       hoverColor: AppColors.purpleColor,
-                                                       highlightColor: AppColors.buttonColor.withOpacity(0.6),
-                                                       splashColor: AppColors.buttonColor,
-                                                       onTap: (){
-                                                         debugPrint("Application");
-                                                         Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ApplicationScreen(), alignment: Alignment.centerLeft));
-
-
-                                                       },
-                                                       child:  Center(child: Text("Applications",
-                                                       style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp),)),
-                                                     ),
-                                                   ),
-                                                 ),
-                                               )),
-                                               Expanded(child: Align(
-                                                 child: Container(
-                                                   height: 45.sp,
-                                                   width: 220.sp,
-                                                   decoration:BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(20.sp)),
-                                                   child: Material(
-                                                     color: Colors.transparent,
-                                                     shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.sp)),
-                                                     child: InkWell(
-                                                       splashFactory: InkRipple.splashFactory,
-                                                       hoverColor: AppColors.purpleColor,
-                                                       highlightColor: AppColors.buttonColor.withOpacity(0.6),
-                                                       splashColor: AppColors.buttonColor,
-                                                       onTap: (){
-
-                                                         debugPrint("Time Adjustment tap");
-                                                         Navigator.push(context, ScalePageTransition.scalePageTransition(page: const TimeAdjustmentScreen(), alignment: Alignment.centerLeft));
-
-                                                       },
-                                                       child: Center(child: Text("Time Adjustment",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
-                                                     ),
-                                                   ),
-                                                 ),
-                                               )),
+                                               SizedBox(width: 6.sp,),
                                                Expanded(
-                                                   flex: 1,
+                                                 flex: 2,
+                                                   child:  Align(
+                                                 child: SizedBox(
+                                                   height: 40.sp,
+                                                   width: 120.sp,
+                                                   // decoration:BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(20.sp)),
+                                                   child: ElevatedButton(
+                                                     style:   TextButton.styleFrom(
+                      textStyle: GoogleFonts.poppins(fontSize: 20),
+                      ),
+                                                     // splashFactory: InkRipple.splashFactory,
+                                                     // hoverColor: AppColors.purpleColor,
+                                                     // highlightColor: AppColors.buttonColor.withOpacity(0.6),
+                                                     // splashColor: AppColors.buttonColor,
+                                                     onPressed: (){
+                                                       debugPrint("Application");
+                                                       Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ApplicationScreen(), alignment: Alignment.centerLeft));
+
+
+                                                     },
+                                                     child:  FittedBox(child: Text("Applications",
+                                                     style: GoogleFonts.poppins(color: AppColors.greyColor),)),
+                                                   ),
+                                                 ),
+                                               )),
+                                               SizedBox(width: 3.sp,),
+                                               Expanded(
+                                                   flex:3,child: Align(
+                                                 child: SizedBox(
+                                                   height: 40.sp,
+                                                   width: 300.sp,
+
+                                                   child: ElevatedButton(
+
+                                                     onPressed: (){
+
+                                                       debugPrint("Time Adjustment tap");
+                                                       Navigator.push(context, ScalePageTransition.scalePageTransition(page: const TimeAdjustmentScreen(), alignment: Alignment.centerLeft));
+
+                                                     },
+                                                     child: FittedBox(child: Text("Time Adjustment",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
+                                                   ),
+                                                 ),
+                                               )),
+                                               SizedBox(width: 3.sp,),
+                                               Expanded(
+                                                   flex: 2,
                                                    child: Align(
-                                                     child: Container(
-                                                       height: 45.sp,
+                                                     child: SizedBox(
+                                                       height: 40.sp,
                                                        width: 120.sp,
-                                                       decoration:BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(20.sp)),
-                                                       child: Material(
 
-                                                         color: Colors.transparent,
-                                                         shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.sp)),
-                                                         child: InkWell(
-                                                           splashFactory: InkRipple.splashFactory,
-                                                           hoverColor: AppColors.purpleColor,
-                                                           highlightColor: AppColors.buttonColor.withOpacity(0.6),
-                                                           splashColor: AppColors.buttonColor,
-                                                           onTap: (){
+                                                       child: ElevatedButton(
 
-                                                             debugPrint("View Details");
-                                                             Navigator.push(context, ScalePageTransition.scalePageTransition(page: const AttendanceDetailsScreen(), alignment: Alignment.centerLeft));
+                                                         onPressed: (){
 
-                                                           },
-                                                           child: Center(child: Text("View Details",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
-                                                         ),
+                                                           debugPrint("View Details");
+                                                           Navigator.push(context, ScalePageTransition.scalePageTransition(page: const AttendanceDetailsScreen(), alignment: Alignment.centerLeft));
+
+                                                         },
+                                                         child: FittedBox(child: Text("View Details",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
                                                        ),
                                                      ),
                                                    )),
+                                               SizedBox(width: 3.sp,),
                                              ],
                                            ),
                                            SizedBox(height: 15.sp,),
@@ -755,7 +745,7 @@ height: 1.sp,
                                              child: InkWell(
                                                  onTap: (){
 
-                                                   Navigator.push(context, CustomSlidePageRoute(child: const TaskScreen()));
+                                                   Navigator.push(context, CustomSlidePageRoute(child: const TaskScreen(),direction: AxisDirection.left));
 
                                                  },
                                                  child: ContainerListTileDashBoard(iconPath: AppIcons.taskMainPageIcon, titleText: 'Tasks',)),

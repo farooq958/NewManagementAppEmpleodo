@@ -228,35 +228,25 @@ readOnly: true,
   SizedBox(height: 20.sp,),
   ///Submit button
   Container(
-    margin: EdgeInsets.symmetric(horizontal: 10.sp),
+    margin: EdgeInsets.symmetric(horizontal: 60.sp),
    // padding: EdgeInsets.symmetric(horizontal: 20.sp),
-    child: Material(
-      child: InkWell(
-        splashFactory: InkSparkle.splashFactory,
-        highlightColor: Colors.transparent,
-        splashColor: AppColors.blueContainerColor.withOpacity(0.1),
-        onTap: () {
-          debugPrint('submit button is pressed');
-          //context.read<RegisterCubit>().registerDevice(AppControllers.addNewDeviceDeviceNameController.text, AppControllers.addNewDeviceDeviceIdController.text, "63a4307cf75285ab970a4ffa", double.parse(AppControllers.addNewDeviceDeviceLongController.text) , double.parse(AppControllers.addNewDeviceDeviceLatController.text));
+    child: ElevatedButton(
+style: ButtonStyle(
+  backgroundColor: MaterialStateProperty.all(AppColors.buttonColor),
+
+),
+      onPressed: () {
+        debugPrint('submit button is pressed');
+        //context.read<RegisterCubit>().registerDevice(AppControllers.addNewDeviceDeviceNameController.text, AppControllers.addNewDeviceDeviceIdController.text, "63a4307cf75285ab970a4ffa", double.parse(AppControllers.addNewDeviceDeviceLongController.text) , double.parse(AppControllers.addNewDeviceDeviceLatController.text));
 
 
-        },
-        child: Container(
-          height: 45.sp,
-          alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(horizontal: 50.sp),
-          decoration: BoxDecoration(
-            color: AppColors.blueContainerColor,
-            borderRadius: BorderRadius.circular(10.sp),
-          ),
-          child: Text(
-            'Submit',
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontWeight: FontWeight.normal,
-              fontSize: 18.sp,
-            ),
-          ),
+      },
+      child: Text(
+        'Submit',
+        style: GoogleFonts.poppins(
+          color: Colors.white,
+          fontWeight: FontWeight.normal,
+          fontSize: 18.sp,
         ),
       ),
     ),

@@ -8,7 +8,7 @@ import 'Views/Utils/Data/app_provider.dart';
 
 void main() {
   runApp(DevicePreview(
-    enabled: true,
+    enabled: false,
     builder: (context) => const MyApp(), // Wrap your app
   ),);
 }

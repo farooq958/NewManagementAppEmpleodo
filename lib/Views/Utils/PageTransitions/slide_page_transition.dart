@@ -8,8 +8,8 @@ class CustomSlidePageRoute extends PageRouteBuilder {
     required this.child,
     this.direction = AxisDirection.right,
   }) : super(
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 500),
+          transitionDuration: const Duration(milliseconds: 100),
+          reverseTransitionDuration: const Duration(milliseconds: 200),
           pageBuilder: (context, animation, secondaryAnimation) => child,
         );
 
