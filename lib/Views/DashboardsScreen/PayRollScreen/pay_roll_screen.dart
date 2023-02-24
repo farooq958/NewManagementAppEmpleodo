@@ -100,11 +100,11 @@ SizedBox(height:10.sp),
                     MainAxisAlignment.spaceEvenly,
                     children:  [
 
-                      const Expanded(
+                       const Expanded(
                         flex: 2,
                         child: BuildColumnDashboard(
                           firstString: 'Starting Pay',
-                          secondString: '10,30,000',
+                          secondString: '10,30,000', theme: false,
                         ),
                       ),
 
@@ -115,6 +115,7 @@ SizedBox(height:10.sp),
                           child: const BuildColumnDashboard(
                             firstString: 'Current pay',
                             secondString: '10,30,000',
+                            theme: false,
                           ),
                         ),
                       )
@@ -297,6 +298,7 @@ SizedBox(height: 20.sp,),
                           child: BuildColumnDashboard(
                             firstString: 'Increment',
                             secondString: '10,30,000',
+                            theme: false,
                           ),
                         ),
 
@@ -307,6 +309,7 @@ SizedBox(height: 20.sp,),
                             child: const BuildColumnDashboard(
                               firstString: 'Effective from',
                               secondString: '10 jun 2023',
+                              theme: false,
                             ),
                           ),
                         )

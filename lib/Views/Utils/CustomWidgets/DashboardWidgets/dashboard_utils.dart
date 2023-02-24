@@ -1,7 +1,11 @@
+import 'dart:ffi';
+
+import 'package:empleado_development/Controller/Cubits/Theme/theme_cubit.dart';
 import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
 import 'package:empleado_development/Views/Utils/Data/app_files.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,6 +22,8 @@ class RowWidgetDashboard2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<ThemeCubit, bool>(
+  builder: (context, themeState) {
     return Row(
       children: <Widget>[
 
@@ -37,11 +43,13 @@ class RowWidgetDashboard2 extends StatelessWidget {
           padding:  EdgeInsets.only(left: 8.sp),
           child: Align(
               alignment: Alignment.centerLeft,
-              child: FittedBox(child: Text(textToShow,style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp),))),
+              child: FittedBox(child: Text(textToShow,style: GoogleFonts.poppins(color: themeState==false? AppColors.greyColor:Colors.white70,fontSize: 14.sp),))),
         ))
 
       ],
     );
+  },
+);
   }
 }
 
@@ -61,10 +69,11 @@ class CustomMonthPicker extends DatePickerModel {
 class BuildColumnDashboard extends StatelessWidget {
   final String firstString;
   final String secondString;
+  final bool theme;
   const BuildColumnDashboard({
     Key? key,
     required this.firstString,
-    required this.secondString,
+    required this.secondString, required this.theme,
   }) : super(key: key);
 
   @override
@@ -78,7 +87,7 @@ class BuildColumnDashboard extends StatelessWidget {
                     child: Text(
                       firstString,
                       style: GoogleFonts.poppins(
-                          color: AppColors.greyColor,
+                          color: theme==false?AppColors.greyColor:Colors.white70,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400),
                     )))),
@@ -89,7 +98,7 @@ class BuildColumnDashboard extends StatelessWidget {
                 child: FittedBox(
                     child: Text(secondString,
                         style: GoogleFonts.poppins(
-                            color: AppColors.greyColor,
+                            color: theme==false?AppColors.greyColor:Colors.white70,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w600))))),
       ],
@@ -107,11 +116,14 @@ class ContainerListTileDashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<ThemeCubit, bool>(
+  builder: (context, themeState) {
     return Padding(
       padding:  EdgeInsets.only(left: 10.0.sp,right: 10),
       child: Container(
         height: 50.sp,
         decoration:BoxDecoration(
+          color: themeState==false? Colors.transparent:Colors.black87,
             border: Border.all(color: AppColors.borderColorgrey),
             borderRadius: BorderRadius.circular(10.sp)) ,
 
@@ -125,7 +137,7 @@ class ContainerListTileDashBoard extends StatelessWidget {
               child: FittedBox(child: SvgPicture.asset(iconPath,height: 35.sp,width: 35.sp,))),
           title:  Padding(
             padding: EdgeInsets.only(bottom: 15.0.sp),
-            child: Text(titleText,style: GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w600),),
+            child: Text(titleText,style: GoogleFonts.poppins(color: themeState==false? AppColors.greyColor:Colors.white70,fontWeight: FontWeight.w600),),
           ),
           trailing: Padding(
             padding: EdgeInsets.only(bottom: 15.0.sp),
@@ -138,5 +150,7 @@ class ContainerListTileDashBoard extends StatelessWidget {
 
 
     );
+  },
+);
   }
 }

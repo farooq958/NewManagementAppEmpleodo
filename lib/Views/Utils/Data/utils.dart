@@ -98,5 +98,33 @@ static List<DateTime> getDatesList()
      ..hideCurrentSnackBar()
      ..showSnackBar(customSnackBar);
  }
+ static ThemeData blueTheme() {
+   return ThemeData(
 
+
+
+
+
+
+   );
+ }
+
+static ThemeData blueDarkTheme() {
+   return ThemeData(
+     cardColor: AppColors.purpleColor,
+     brightness: Brightness.dark,
+     primaryColor: const  Color(0XffF3F6FC),
+
+
+
+
+
+     colorScheme:  ColorScheme.dark(
+       primary: const Color(0xFFC9E4CA),
+       secondary: AppColors.blueContainerColor,
+       background: AppColors.purpleColor,
+       tertiaryContainer: AppColors.purpleColor
+     ),
+   );
+ }
 }

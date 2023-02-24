@@ -1,5 +1,6 @@
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/animation_scale_dart_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/date_picking_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/Theme/theme_cubit.dart';
 import 'package:empleado_development/Controller/Repository/repo.dart';
 import 'package:empleado_development/Views/DashboardsScreen/AttendenceDetailScreen/attendance_history_screen.dart';
 import 'package:empleado_development/Views/DashboardsScreen/HrPolicyScreen/hr_policy_screen.dart';
@@ -80,7 +81,17 @@ class DashBoardScreen extends StatelessWidget {
     ];
     print("device heigth"+2.sh.toString());
    // ScrollController scrollController=ScrollController(initialScrollOffset: 0.0);
-    return  WillPopScope(
+    return  BlocListener<ThemeCubit, bool>(
+  listener: (context, state) {
+    if(state == true)
+      {
+        AppUtils.showCustomSnackBar(context: context, message: "Note: Dark Theme is in Beta Mode ");
+      }
+    // TODO: implement listener
+  },
+  child: BlocBuilder<ThemeCubit, bool>(
+  builder: (context, themeState) {
+    return WillPopScope(
       onWillPop: () async {
         if(Repository.onWillCheck==0)
           {
@@ -107,7 +118,7 @@ class DashBoardScreen extends StatelessWidget {
             statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
             statusBarBrightness: Brightness.light, // For iOS (dark icons)
           ),
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: themeState==false?AppColors.primaryColor:Colors.black87,
           title: Row(
             children: [
               Flexible(
@@ -137,7 +148,7 @@ class DashBoardScreen extends StatelessWidget {
                           TextSpan(
                             text: 'MPLEADO',
                             style: GoogleFonts.poppins(
-                                color: AppColors.greyColor,
+                                color: themeState==false?AppColors.greyColor:AppColors.whiteColor,
                                 fontSize: 28.sp,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -151,9 +162,29 @@ class DashBoardScreen extends StatelessWidget {
             ],
           ),
           actions: [
+
+                 InkWell(
+                   onTap: (){
+                     if (themeState==true) {
+                       context.read<ThemeCubit>().switchTheme(false);
+                     }
+                     else {
+                       context.read<ThemeCubit>().switchTheme(true);
+                     }
+                   },
+                   child: Icon(
+            themeState==true
+            ? Icons.mode_night_outlined
+            : Icons.sunny,
+color: themeState==false?AppColors.yellowColor:Colors.white70,
+                ),
+                 )
+              ,
+            SizedBox(width: 15.sp,),
             InkWell(
                 onTap: () {
                   debugPrint("messageTapped");
+                  //context.read<ThemeCubit>().switchTheme(false);
                   Navigator.push(context, ScalePageTransition.scalePageTransition(page: const InboxScreen(), alignment: Alignment.topCenter));
 
                 },
@@ -167,6 +198,7 @@ class DashBoardScreen extends StatelessWidget {
             InkWell(
                 onTap: () {
                   debugPrint("BellTapped");
+                 // context.read<ThemeCubit>().switchTheme(false);
                   Navigator.push(context, CustomSlidePageRoute(child: const NotificationScreen(),direction: AxisDirection.down));
                 },
                 child: SvgPicture.asset(AppIcons.bellMainPageIcon)),
@@ -194,6 +226,7 @@ class DashBoardScreen extends StatelessWidget {
                 if(value==MenuItem.logout)
                   {
 ///logout logic handling here ///
+                    context.read<ThemeCubit>().switchTheme(false);
                    Navigator.pushReplacement(context, ScalePageTransition.scalePageTransition(page: const LoginScreen1(), alignment: Alignment.bottomLeft));
                   }
                 // if (value == MenuItem.favourite) {
@@ -273,9 +306,10 @@ physics:const NeverScrollableScrollPhysics(),
                            Container(
                              width: 1.sw,
                              height: 1.sh/3.6,
-                             decoration: const BoxDecoration(
-
-                               image: DecorationImage(image: AssetImage(AppImages.dashboardBackgroundImage))
+                             decoration:  BoxDecoration(
+                               border:Border.all(color: Colors.transparent),
+                   color: themeState==false?Colors.transparent:Colors.black87,
+                               image: const DecorationImage(image: AssetImage(AppImages.dashboardBackgroundImage))
 ,
                               // color: Colors.red
                              ),
@@ -297,6 +331,7 @@ physics:const NeverScrollableScrollPhysics(),
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(40.sp),
                                       onTap: (){
+                                      //  context.read<ThemeCubit>().switchTheme(false);
                                         Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ImagePickerWidget(imagePath:"assets/images/face3.jpeg"), alignment: Alignment.centerLeft));
                                        // print("profile tapeed");
                                       },
@@ -313,18 +348,18 @@ physics:const NeverScrollableScrollPhysics(),
                                  Center(child: Text("Muhammad Farooq Khan",style: GoogleFonts.poppins(color: AppColors.blueContainerColor,fontWeight: FontWeight.w600))),
 
 
-                                 Center(child: Text("Mobile App Engineer,DevAPPSSDSA",style: GoogleFonts.poppins(color: AppColors.greyColor2,fontWeight: FontWeight.w500))),
-                                 Center(child: Text(" for 2 years and 1 Month",style: GoogleFonts.poppins(color: AppColors.greyColor2,fontWeight: FontWeight.w500))),
+                                 Center(child: Text("Mobile App Engineer,DevAPPSSDSA",style: GoogleFonts.poppins(color:themeState==false? AppColors.greyColor2:Colors.white70,fontWeight: FontWeight.w500))),
+                                 Center(child: Text(" for 2 years and 1 Month",style: GoogleFonts.poppins(color: themeState==false?AppColors.greyColor2:Colors.white70,fontWeight: FontWeight.w500))),
                               ],
                           ),
                            ),
 
 
 
-                           SizedBox(
+                           Container(
                              height: 1.sh<750.0?2.0.sh-(1.sh/3):1.sw>430.0?1.9.sh-(1.sh/3):1.689.sh-(1.sh/3),
                              width: 1.sw,
-//color: Colors.black,
+color: themeState==false?Colors.transparent:Colors.black87,
                              child: Stack(
                                children: [
                                  Positioned(
@@ -336,10 +371,17 @@ physics:const NeverScrollableScrollPhysics(),
                                        width: 1.sw,
                                        height: 1.sh,
                                        decoration: BoxDecoration(
-                                           color: Colors.white,
+                                           color: themeState==false?Colors.white:Colors.black87,
                                            borderRadius: BorderRadius.only(
                                                topLeft: Radius.circular(40.sp),
-                                               topRight: Radius.circular(40.sp))),
+                                               topRight: Radius.circular(40.sp)),
+                                           boxShadow:  [
+                                           BoxShadow(
+                                           color: AppColors.greyColor2.withOpacity(0.5), //New
+                                           blurRadius: 70.0.sp,
+                                           offset: const Offset(0, -10))
+                                       ],
+                                       ),
                                        child: ListView(
                                          physics:
                                              const NeverScrollableScrollPhysics(),
@@ -350,15 +392,16 @@ physics:const NeverScrollableScrollPhysics(),
                                            Container(
                                              width: 1.sw,
                                              height: 70.sp,
-                                             color: Colors.white,
+                                             color: themeState==false?Colors.white:Colors.black87,
                                              child: Row(
                                                mainAxisAlignment:
                                                    MainAxisAlignment.spaceEvenly,
                                                children: <Widget>[
-                                                 const Expanded(
+                                                  Expanded(
                                                    child: BuildColumnDashboard(
                                                      firstString: 'Current Status',
                                                      secondString: 'Signed In',
+                                                     theme:themeState
                                                    ),
                                                  ),
                                                  Flexible(
@@ -372,10 +415,11 @@ physics:const NeverScrollableScrollPhysics(),
                                                          color: AppColors.greyColor2,
                                                        )),
                                                  )),
-                                                 const Expanded(
+                                                  Expanded(
                                                    child: BuildColumnDashboard(
                                                      firstString: 'Working Status',
                                                      secondString: 'Duty Time',
+                                                       theme:themeState
                                                    ),
                                                  ),
                                                  Flexible(
@@ -392,10 +436,11 @@ physics:const NeverScrollableScrollPhysics(),
                                                          color: AppColors.greyColor2,
                                                        )),
                                                  )),
-                                                 const Expanded(
+                                                  Expanded(
                                                    child: BuildColumnDashboard(
                                                      firstString: 'Login Time',
                                                      secondString: '9:30',
+                                                       theme:themeState
                                                    ),
                                                  )
                                                ],
@@ -407,7 +452,7 @@ physics:const NeverScrollableScrollPhysics(),
                                              Padding(
                                                padding:  EdgeInsets.symmetric(horizontal: 10.0.sp),
                                                child: Text("Attendance History",style: GoogleFonts.poppins(
-                                                   color: AppColors.greyColor,
+                                                   color: themeState==false?AppColors.greyColor:Colors.white70,
                                                    fontWeight: FontWeight.w600,fontSize: 18.sp),),
                                              ),
                                            SizedBox(
@@ -424,8 +469,12 @@ physics:const NeverScrollableScrollPhysics(),
                                               //   color: AppColors.primaryColor,
                                               // ),
                                                 child:  ElevatedButton(
-
+style: ButtonStyle(
+  
+  backgroundColor:themeState== false? MaterialStateProperty.all(AppColors.primaryColor):MaterialStateProperty.all(AppColors.blueContainerColor)
+),
                                                   onPressed: () {
+                                                    //context.read<ThemeCubit>().switchTheme(false);
                                                     Navigator.push(context, ScalePageTransition.scalePageTransition(page: const AttendanceHistoryScreen(), alignment: Alignment.center));
 
                                                     },
@@ -434,7 +483,7 @@ physics:const NeverScrollableScrollPhysics(),
                                                       child: Text(
                                                     "Last 30 days",
                                                     style: GoogleFonts.poppins(
-                                                        color: AppColors.greyColor,
+                                                        color: themeState==false?AppColors.greyColor:Colors.white70,
                                                         fontWeight: FontWeight.w400),
                                                   )),
                                                 ),
@@ -454,7 +503,7 @@ physics:const NeverScrollableScrollPhysics(),
                                                height: 1.sh<750? 1.sh / 1.7:1.sh/2.05,  //2.03
                                                width: 1.sw / 1.1,
                                                decoration: BoxDecoration(
-                                                   color: AppColors.primaryColor,
+                                                   color: themeState==false?AppColors.primaryColor:AppColors.greyColor2,
                                                    borderRadius:
                                                        BorderRadius.circular(30.sp)),
                                                child: ListView(
@@ -477,8 +526,8 @@ physics:const NeverScrollableScrollPhysics(),
                                                                    fontWeight:
                                                                        FontWeight
                                                                            .w700,
-                                                                   color: AppColors
-                                                                       .greyColor),
+                                                                   color:themeState==false? AppColors
+                                                                       .greyColor:Colors.white70),
                                                          ),
                                                        )),
                                                        Expanded(
@@ -516,8 +565,8 @@ physics:const NeverScrollableScrollPhysics(),
                                                                child: Container(
                                                                  height: 40.sp,
                                                                  decoration: BoxDecoration(
-                                                                     color: AppColors
-                                                                         .primaryColor,
+                                                                     color:themeState==false? AppColors
+                                                                         .primaryColor:AppColors.blueContainerColor,
                                                                      border: Border.all(
                                                                          color: AppColors
                                                                              .greyColor2),
@@ -533,8 +582,8 @@ physics:const NeverScrollableScrollPhysics(),
                                                                        fontWeight:
                                                                            FontWeight
                                                                                .w400,
-                                                                       color: AppColors
-                                                                           .greyColor,
+                                                                       color: themeState==false?AppColors
+                                                                           .greyColor:Colors.white70,
                                                                        fontSize:
                                                                            15.sp),
                                                                  ))),
@@ -563,10 +612,11 @@ physics:const NeverScrollableScrollPhysics(),
 //
 // ),
                                                      primaryXAxis: NumericAxis(
+                                                         labelStyle: GoogleFonts.poppins(color: themeState==false?AppColors.greyColor2:Colors.white70),
                                                        interval: 5,
                                                        title: AxisTitle(text: "Month Days"
                                                            ,textStyle:
-                                                           GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w500,fontSize: 14.sp)),
+                                                           GoogleFonts.poppins(color: themeState==false?AppColors.greyColor:Colors.white70,fontWeight: FontWeight.w500,fontSize: 14.sp)),
                                                        minimum: 0
                                                            ,
                                                        maximum: 32
@@ -575,20 +625,25 @@ physics:const NeverScrollableScrollPhysics(),
 
                                                            title: AxisTitle(
 
+
                                                                text: "Hours",textStyle:
-                                                           GoogleFonts.poppins(color: AppColors.greyColor,fontWeight: FontWeight.w500,fontSize: 14.sp)),
+                                                           GoogleFonts.poppins(color:themeState==false? AppColors.greyColor:Colors.white70,fontWeight: FontWeight.w500,fontSize: 14.sp)),
+                                                         labelStyle: GoogleFonts.poppins(color: themeState==false?AppColors.greyColor2:Colors.white70),
                                                          minimum: 0,
                                                          maximum: 10
                                                        ),
-                                                       plotAreaBorderColor: AppColors.greyColor,
- plotAreaBackgroundColor: AppColors.primaryColor,
+                                                       plotAreaBorderColor: themeState==false?AppColors.greyColor:Colors.black87,
+ plotAreaBackgroundColor: themeState==false?AppColors.primaryColor:AppColors.greyColor2,
                                                        series: <ChartSeries<Attendance, int>>[
                                                          // Renders column chart
                                                          ColumnSeries<Attendance ,int>(
+                                                         //  isTrackVisible: true,
+                                                           trackColor: themeState==false?AppColors.greyColor2:Colors.white70,
+
                                                            borderWidth:2,
 
 
-borderColor: AppColors.primaryColor,
+borderColor:themeState==false? AppColors.primaryColor:Colors.transparent,
                                                            color: AppColors.blueContainerColor,
                                                            width: 0.7.sp,
                                                              dataSource: chartData,
@@ -629,21 +684,24 @@ borderColor: AppColors.primaryColor,
                                                    width: 120.sp,
                                                    // decoration:BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(20.sp)),
                                                    child: ElevatedButton(
-                                                     style:   TextButton.styleFrom(
-                      textStyle: GoogleFonts.poppins(fontSize: 20),
-                      ),
+                                                     style:   ButtonStyle(
+                                                         backgroundColor:themeState== false? MaterialStateProperty.all(AppColors.primaryColor):MaterialStateProperty.all(AppColors.blueContainerColor)
+
+
+                                                     ),
                                                      // splashFactory: InkRipple.splashFactory,
                                                      // hoverColor: AppColors.purpleColor,
                                                      // highlightColor: AppColors.buttonColor.withOpacity(0.6),
                                                      // splashColor: AppColors.buttonColor,
                                                      onPressed: (){
                                                        debugPrint("Application");
+                                                       //context.read<ThemeCubit>().switchTheme(false);
                                                        Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ApplicationScreen(), alignment: Alignment.centerLeft));
 
 
                                                      },
                                                      child:  FittedBox(child: Text("Applications",
-                                                     style: GoogleFonts.poppins(color: AppColors.greyColor),)),
+                                                     style: GoogleFonts.poppins(color:themeState== false? AppColors.greyColor:Colors.white70),)),
                                                    ),
                                                  ),
                                                )),
@@ -655,14 +713,18 @@ borderColor: AppColors.primaryColor,
                                                    width: 300.sp,
 
                                                    child: ElevatedButton(
+                                                     style:   ButtonStyle(
+                                                         backgroundColor:themeState== false? MaterialStateProperty.all(AppColors.primaryColor):MaterialStateProperty.all(AppColors.blueContainerColor)
 
+
+                                                     ),
                                                      onPressed: (){
-
+                                                      // context.read<ThemeCubit>().switchTheme(false);
                                                        debugPrint("Time Adjustment tap");
                                                        Navigator.push(context, ScalePageTransition.scalePageTransition(page: const TimeAdjustmentScreen(), alignment: Alignment.centerLeft));
 
                                                      },
-                                                     child: FittedBox(child: Text("Time Adjustment",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
+                                                     child: FittedBox(child: Text("Time Adjustment",  style: GoogleFonts.poppins(color: themeState==false? AppColors.greyColor:Colors.white70,fontSize: 14.sp))),
                                                    ),
                                                  ),
                                                )),
@@ -675,14 +737,18 @@ borderColor: AppColors.primaryColor,
                                                        width: 120.sp,
 
                                                        child: ElevatedButton(
+                                                         style:   ButtonStyle(
+                                                             backgroundColor:themeState== false? MaterialStateProperty.all(AppColors.primaryColor):MaterialStateProperty.all(AppColors.blueContainerColor)
 
+
+                                                         ),
                                                          onPressed: (){
-
+                                                          // context.read<ThemeCubit>().switchTheme(false);
                                                            debugPrint("View Details");
                                                            Navigator.push(context, ScalePageTransition.scalePageTransition(page: const AttendanceDetailsScreen(), alignment: Alignment.centerLeft));
 
                                                          },
-                                                         child: FittedBox(child: Text("View Details",  style: GoogleFonts.poppins(color: AppColors.greyColor,fontSize: 14.sp))),
+                                                         child: FittedBox(child: Text("View Details",  style: GoogleFonts.poppins(color:themeState==false? AppColors.greyColor:Colors.white70,fontSize: 14.sp))),
                                                        ),
                                                      ),
                                                    )),
@@ -742,6 +808,7 @@ height: 1.sp,
                                            ),
                                            SizedBox(height: 30.sp,),
                                            Material(
+                                             color: themeState==false? AppColors.whiteColor:Colors.black38,
                                              child: InkWell(
                                                  onTap: (){
 
@@ -752,8 +819,10 @@ height: 1.sp,
                                            ),
                                             SizedBox(height: 10.sp,),
                                             Material(
+                                              color: themeState==false? AppColors.whiteColor:Colors.black38,
                                               child: InkWell(
                                                  onTap:(){
+                                                  // context.read<ThemeCubit>().switchTheme(false);
                                                    Navigator.push(context, CustomSlidePageRoute(child: const NoticesScreen()));
 
                                                  },
@@ -761,10 +830,12 @@ height: 1.sp,
                                             ),
                                            SizedBox(height: 10.sp,),
                                             Material(
+                                              color: themeState==false? AppColors.whiteColor:Colors.black38,
                                               child: InkWell(
 
                                                  onTap: ()
                                                  {
+                                                  // context.read<ThemeCubit>().switchTheme(false);
                                                    Navigator.push(context, CustomSlidePageRoute(child: const PayRollScreen()));
 
                                                  },
@@ -772,7 +843,7 @@ height: 1.sp,
                                             ),
                                            SizedBox(height: 10.sp,),
                                            Material(
-
+                                             color: themeState==false? AppColors.whiteColor:Colors.black38,
                                              //surfaceTintColor: Colors.lightBlueAccent,
                                              //shadowColor: ,
 
@@ -781,7 +852,7 @@ height: 1.sp,
                                       //  focusColor: AppColors.purpleColor,
                                            //   splashColor: AppColors.blueContainerColor,
                                                  onTap: (){
-
+                                                //   context.read<ThemeCubit>().switchTheme(false);
                                                    Navigator.push(context, CustomSlidePageRoute(child: const PerformancePageView()));
 
                                                  },
@@ -878,6 +949,7 @@ height: 1.sp,
                                                          .read<
                                                              AnimationScaleDartCubit>()
                                                          .transformWidget(0.7);
+                                                     //context.read<ThemeCubit>().switchTheme(false);
 
                                                      Navigator.push(context, ScalePageTransition.scalePageTransition(page: const HrPolicyScreen(), alignment: Alignment.centerLeft));
 
@@ -1040,6 +1112,9 @@ height: 1.sp,
 
       ),
     );
+  },
+),
+);
   }
 
 

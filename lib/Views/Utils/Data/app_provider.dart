@@ -2,6 +2,7 @@ import 'package:empleado_development/Controller/Cubits/Application/ApplicationTy
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/animation_scale_dart_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/PerformanceCubit/FeedBack/performance_page_view_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/PerformanceCubit/PerformancePageViewCubit/performance_page_view_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/Theme/theme_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/loginCubits/login_radiobutton_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,5 +22,7 @@ BlocProvider<AnimationScaleDartCubit>(create: (context)=>AnimationScaleDartCubit
   BlocProvider<DatePickingAddGoalsEndDateCubit>(create: (context)=>DatePickingAddGoalsEndDateCubit()),
   BlocProvider<FeedBackButtonsCubit>(create: (context)=>FeedBackButtonsCubit()),
   BlocProvider<LeaveDetailCubit>(create: (context)=>LeaveDetailCubit()),
+  BlocProvider<ThemeCubit>(
+      create: (context) => ThemeCubit()),
 
 ];

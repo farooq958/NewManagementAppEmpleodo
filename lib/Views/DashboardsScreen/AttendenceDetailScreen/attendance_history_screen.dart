@@ -91,7 +91,7 @@ SizedBox(height: 20.sp),
                    alignment: Alignment.topCenter,
                    child: BuildColumnDashboard(
                      firstString: 'In Time',
-                     secondString: '9:30 am',
+                     secondString: '9:30 am', theme: false,
                    ),
                      ),
                    ),
@@ -100,6 +100,7 @@ SizedBox(height: 20.sp),
                      child: BuildColumnDashboard(
                    firstString: 'Out Time',
                    secondString: '5:30 pm',
+                         theme: false
                      ),
                    ),
 
@@ -107,6 +108,7 @@ SizedBox(height: 20.sp),
                      child: BuildColumnDashboard(
                    firstString: 'Earned Hours',
                    secondString: '7 hrs, 25 min',
+                         theme: false
                      ),
                    )
                    ],
@@ -126,6 +128,7 @@ SizedBox(height: 20.sp),
                    child: BuildColumnDashboard(
                      firstString: 'OverTime',
                      secondString: '12 min',
+                       theme: false
                    ),
                    ),
 
@@ -136,6 +139,7 @@ SizedBox(height: 20.sp),
                      child: const BuildColumnDashboard(
                    firstString: 'Late Minutes',
                    secondString: '1000',
+                         theme: false
                      ),
                    ),
                    )
