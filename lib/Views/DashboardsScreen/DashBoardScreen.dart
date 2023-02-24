@@ -305,7 +305,8 @@ physics:const NeverScrollableScrollPhysics(),
                         children: [
                            Container(
                              width: 1.sw,
-                             height: 1.sh/3.6,
+                              height: (1.sh/3.52),
+                            // height: (1.sh/3).sp,
                              decoration:  BoxDecoration(
                                border:Border.all(color: Colors.transparent),
                    color: themeState==false?Colors.transparent:Colors.black87,
@@ -358,6 +359,7 @@ physics:const NeverScrollableScrollPhysics(),
 
                            Container(
                              height: 1.sh<750.0?2.0.sh-(1.sh/3):1.sw>430.0?1.9.sh-(1.sh/3):1.689.sh-(1.sh/3),
+                              //height: (2.0.sh-(1.sh/7)).sp,
                              width: 1.sw,
 color: themeState==false?Colors.transparent:Colors.black87,
                              child: Stack(

@@ -89,7 +89,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
       body: StickyFooterScrollView( itemBuilder: (context,index){
 
         return Container(
-          color: themeState==false?AppColors.primaryColor:Colors.black87,
+          color: themeState==false?AppColors.whiteColor:Colors.black87,
           child: ListView(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
