@@ -1,7 +1,13 @@
+import 'package:empleado_development/Controller/Cubits/Attendance/attendance_data_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/animation_scale_dart_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/DashboardCubits/dashboard_data_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/date_picking_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/Theme/theme_cubit.dart';
 import 'package:empleado_development/Controller/Repository/repo.dart';
+import 'package:empleado_development/Model/AttendanceModel/attendance_controller.dart';
+import 'package:empleado_development/Model/AttendanceModel/attendance_model.dart';
+import 'package:empleado_development/Model/DashboardModel/dashboard_controller.dart';
+import 'package:empleado_development/Model/DashboardModel/dashboard_model.dart';
 import 'package:empleado_development/Views/DashboardsScreen/AttendenceDetailScreen/attendance_history_screen.dart';
 import 'package:empleado_development/Views/DashboardsScreen/HrPolicyScreen/hr_policy_screen.dart';
 import 'package:empleado_development/Views/DashboardsScreen/InboxScreen/inbox_screen.dart';
@@ -24,6 +30,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sticky_footer_scrollview/sticky_footer_scrollview.dart';
@@ -43,43 +50,43 @@ class DashBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     int checkWill=0;
 
-    final List<Attendance> chartData = [
-      Attendance( day: 1, hours: 9),
-      Attendance( day: 2, hours: 8),
-      Attendance( day: 3, hours: 6),
-      Attendance( day: 4, hours: 5),
-      Attendance( day: 5, hours: 7),
-      Attendance( day: 6, hours: 7),
-      Attendance( day: 7, hours: 8),
-      Attendance( day: 8, hours: 6),
-      Attendance( day: 9, hours: 3),
-      Attendance( day: 10, hours: 2),
-      Attendance( day: 11, hours: 3),
-      Attendance( day: 12, hours: 1),
-      Attendance( day: 13, hours: 8),
-      Attendance( day: 14, hours: 2),
-      Attendance( day: 15, hours: 4),
-      Attendance( day: 16, hours: 7),
-      Attendance( day: 17, hours: 8),
-      Attendance( day: 18, hours: 6),
-      Attendance( day: 19, hours: 5),
-      Attendance( day: 20, hours: 7),
-      Attendance( day: 21, hours: 7),
-      Attendance( day: 22, hours: 8),
-      Attendance( day: 23, hours: 6),
-      Attendance( day: 24, hours: 5),
-      Attendance( day: 25, hours: 7),
-      Attendance( day: 26, hours: 7),
-      Attendance( day: 27, hours: 8),
-      Attendance( day: 28, hours: 6),
-      Attendance( day: 29, hours: 5),
-      Attendance( day: 30, hours: 7),
-      Attendance( day: 31, hours: 7),
+    final List<Attendancedummy> chartData = [
+      Attendancedummy( day: 1, hours: 9),
+      Attendancedummy( day: 2, hours: 8),
+      Attendancedummy( day: 3, hours: 6),
+      Attendancedummy( day: 4, hours: 5),
+      Attendancedummy( day: 5, hours: 7),
+      Attendancedummy( day: 6, hours: 7),
+      Attendancedummy( day: 7, hours: 8),
+      Attendancedummy( day: 8, hours: 6),
+      Attendancedummy( day: 9, hours: 3),
+      Attendancedummy( day: 10, hours: 2),
+      Attendancedummy( day: 11, hours: 3),
+      Attendancedummy( day: 12, hours: 1),
+      Attendancedummy( day: 13, hours: 8),
+      Attendancedummy( day: 14, hours: 2),
+      Attendancedummy( day: 15, hours: 4),
+      Attendancedummy( day: 16, hours: 7),
+      Attendancedummy( day: 17, hours: 8),
+      Attendancedummy( day: 18, hours: 6),
+      Attendancedummy( day: 19, hours: 5),
+      Attendancedummy( day: 20, hours: 7),
+      Attendancedummy( day: 21, hours: 7),
+      Attendancedummy( day: 22, hours: 8),
+      Attendancedummy( day: 23, hours: 6),
+      Attendancedummy( day: 24, hours: 5),
+      Attendancedummy( day: 25, hours: 7),
+      Attendancedummy( day: 26, hours: 7),
+      Attendancedummy( day: 27, hours: 8),
+      Attendancedummy( day: 28, hours: 6),
+      Attendancedummy( day: 29, hours: 5),
+      Attendancedummy( day: 30, hours: 7),
+      Attendancedummy( day: 31, hours: 7),
 
 
 
     ];
-    print("device heigth"+2.sh.toString());
+   // print("device heigth"+2.sh.toString());
    // ScrollController scrollController=ScrollController(initialScrollOffset: 0.0);
     return  BlocListener<ThemeCubit, bool>(
   listener: (context, state) {
@@ -107,6 +114,74 @@ class DashBoardScreen extends StatelessWidget {
         //return false;
       },
       child: Scaffold(
+        drawer: Drawer(
+          backgroundColor: themeState==false?AppColors.primaryColor:AppColors.blackColor87,
+          width: (1.sw/1.2).sp,child:   Stack(
+            children: [
+              ListView(
+              shrinkWrap: true,
+              children: [
+                SizedBox(height: 50.sp,),
+                Material(
+                  color: themeState==false? AppColors.whiteColor:Colors.black38,
+                  child: InkWell(
+                      onTap: (){
+
+                        Navigator.push(context, CustomSlidePageRoute(child: const TaskScreen(),direction: AxisDirection.left));
+
+                      },
+                      child: ContainerListTileDashBoard(iconPath: AppIcons.taskMainPageIcon, titleText: 'Tasks',)),
+                ),
+                SizedBox(height: 10.sp,),
+                Material(
+                  color: themeState==false? AppColors.whiteColor:Colors.black38,
+                  child: InkWell(
+                      onTap:(){
+                        // context.read<ThemeCubit>().switchTheme(false);
+                        Navigator.push(context, CustomSlidePageRoute(child: const NoticesScreen()));
+
+                      },
+                      child: ContainerListTileDashBoard(iconPath: AppIcons.noticesMainPageIcon, titleText: 'Notices',)),
+                ),
+                SizedBox(height: 10.sp,),
+                Material(
+                  color: themeState==false? AppColors.whiteColor:Colors.black38,
+                  child: InkWell(
+
+                      onTap: ()
+                      {
+                        // context.read<ThemeCubit>().switchTheme(false);
+                        Navigator.push(context, CustomSlidePageRoute(child: const PayRollScreen()));
+
+                      },
+                      child: ContainerListTileDashBoard(iconPath: AppIcons.payRollMainPageIcon, titleText: 'PayRoll',)),
+                ),
+                SizedBox(height: 10.sp,),
+                Material(
+                  color: themeState==false? AppColors.whiteColor:Colors.black38,
+                  //surfaceTintColor: Colors.lightBlueAccent,
+                  //shadowColor: ,
+
+                  child: InkWell(
+
+                    //  focusColor: AppColors.purpleColor,
+                    //   splashColor: AppColors.blueContainerColor,
+                      onTap: (){
+                        //   context.read<ThemeCubit>().switchTheme(false);
+                        Navigator.push(context, CustomSlidePageRoute(child: const PerformancePageView()));
+
+                      },
+                      child: ContainerListTileDashBoard(iconPath: AppIcons.performanceMainPageIcon, titleText: 'Performance',)),
+                ),
+                SizedBox(height: 10.sp,),
+              ],
+
+        ),
+              Positioned(
+              bottom: 0,
+                  child: Center(child: veevoCopyRightWidget()))
+            ],
+          ),),
 
         appBar: AppBar(
 
@@ -118,7 +193,7 @@ class DashBoardScreen extends StatelessWidget {
             statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
             statusBarBrightness: Brightness.light, // For iOS (dark icons)
           ),
-          backgroundColor: themeState==false?AppColors.primaryColor:Colors.black87,
+          backgroundColor: themeState==false?AppColors.primaryColor:AppColors.blackColor87,
           title: Row(
             children: [
               Flexible(
@@ -296,7 +371,14 @@ color: themeState==false?AppColors.yellowColor:Colors.white70,
       // // TODO: implement listener
       // },)
 
-                   StickyFooterScrollView(
+        BlocConsumer<DashboardDataCubit, DashboardDataState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, dashboardUiState) {
+
+    if(dashboardUiState is DashboardDataLoaded ) {
+      return StickyFooterScrollView(
                     itemBuilder: (context,index) {
                       return  ListView(
                         shrinkWrap: true,
@@ -309,7 +391,7 @@ physics:const NeverScrollableScrollPhysics(),
                             // height: (1.sh/3).sp,
                              decoration:  BoxDecoration(
                                border:Border.all(color: Colors.transparent),
-                   color: themeState==false?Colors.transparent:Colors.black87,
+                   color: themeState==false?Colors.transparent:AppColors.blackColor87,
                                image: const DecorationImage(image: AssetImage(AppImages.dashboardBackgroundImage))
 ,
                               // color: Colors.red
@@ -323,22 +405,20 @@ physics:const NeverScrollableScrollPhysics(),
                                   child:  Container(
                                     height: 130.sp,
                                     width: 130.sp,
-
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100.sp),
                                       color: AppColors.blueContainerColor,
                                     ),
-
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(40.sp),
                                       onTap: (){
                                       //  context.read<ThemeCubit>().switchTheme(false);
-                                        Navigator.push(context, ScalePageTransition.scalePageTransition(page: const ImagePickerWidget(imagePath:"assets/images/face3.jpeg"), alignment: Alignment.centerLeft));
+                                        Navigator.push(context, ScalePageTransition.scalePageTransition(page:  ImagePickerWidget(imagePath:dashboardData.personalInfo.dp), alignment: Alignment.centerLeft));
                                        // print("profile tapeed");
                                       },
                                       child: CircleAvatar(
                                         backgroundColor: AppColors.greenColor,
-                                        backgroundImage: const AssetImage("assets/images/face3.jpeg"),
+                                        backgroundImage:  NetworkImage(dashboardData.personalInfo.dp),
                                         maxRadius: 100.sp,
                                         //child: Image.asset("assets/images/face2.jpeg",fit: BoxFit.fitWidth,)
                                         ),
@@ -346,11 +426,11 @@ physics:const NeverScrollableScrollPhysics(),
                                   ),
                                 ),
                                 SizedBox(height: 5.sp,),
-                                 Center(child: Text("Muhammad Farooq Khan",style: GoogleFonts.poppins(color: AppColors.blueContainerColor,fontWeight: FontWeight.w600))),
+                                 Center(child: Text(dashboardData.personalInfo.name,style: GoogleFonts.poppins(color: AppColors.blueContainerColor,fontWeight: FontWeight.w600))),
 
 
-                                 Center(child: Text("Mobile App Engineer,DevAPPSSDSA",style: GoogleFonts.poppins(color:themeState==false? AppColors.greyColor2:Colors.white70,fontWeight: FontWeight.w500))),
-                                 Center(child: Text(" for 2 years and 1 Month",style: GoogleFonts.poppins(color: themeState==false?AppColors.greyColor2:Colors.white70,fontWeight: FontWeight.w500))),
+                                 Center(child: Text(dashboardData.personalInfo.designation,style: GoogleFonts.poppins(color:themeState==false? AppColors.greyColor2:Colors.white70,fontWeight: FontWeight.w500))),
+                                 Center(child: Text("For ${dashboardData.personalInfo.serviceDuration}",style: GoogleFonts.poppins(color: themeState==false?AppColors.greyColor2:Colors.white70,fontWeight: FontWeight.w500))),
                               ],
                           ),
                            ),
@@ -361,7 +441,7 @@ physics:const NeverScrollableScrollPhysics(),
                              height: 1.sh<750.0?2.0.sh-(1.sh/3):1.sw>430.0?1.9.sh-(1.sh/3):1.689.sh-(1.sh/3),
                               //height: (2.0.sh-(1.sh/7)).sp,
                              width: 1.sw,
-color: themeState==false?Colors.transparent:Colors.black87,
+color: themeState==false?Colors.transparent:AppColors.blackColor87,
                              child: Stack(
                                children: [
                                  Positioned(
@@ -373,7 +453,7 @@ color: themeState==false?Colors.transparent:Colors.black87,
                                        width: 1.sw,
                                        height: 1.sh,
                                        decoration: BoxDecoration(
-                                           color: themeState==false?Colors.white:Colors.black87,
+                                           color: themeState==false?Colors.white:AppColors.blackColor87,
                                            borderRadius: BorderRadius.only(
                                                topLeft: Radius.circular(40.sp),
                                                topRight: Radius.circular(40.sp)),
@@ -394,7 +474,7 @@ color: themeState==false?Colors.transparent:Colors.black87,
                                            Container(
                                              width: 1.sw,
                                              height: 70.sp,
-                                             color: themeState==false?Colors.white:Colors.black87,
+                                             color: themeState==false?Colors.white:AppColors.blackColor87,
                                              child: Row(
                                                mainAxisAlignment:
                                                    MainAxisAlignment.spaceEvenly,
@@ -402,7 +482,7 @@ color: themeState==false?Colors.transparent:Colors.black87,
                                                   Expanded(
                                                    child: BuildColumnDashboard(
                                                      firstString: 'Current Status',
-                                                     secondString: 'Signed In',
+                                                     secondString: dashboardData.personalInfo.todayAttStatus.currentStatus,
                                                      theme:themeState
                                                    ),
                                                  ),
@@ -420,7 +500,7 @@ color: themeState==false?Colors.transparent:Colors.black87,
                                                   Expanded(
                                                    child: BuildColumnDashboard(
                                                      firstString: 'Working Status',
-                                                     secondString: 'Duty Time',
+                                                     secondString: dashboardData.personalInfo.todayAttStatus.workingStatus,
                                                        theme:themeState
                                                    ),
                                                  ),
@@ -441,7 +521,7 @@ color: themeState==false?Colors.transparent:Colors.black87,
                                                   Expanded(
                                                    child: BuildColumnDashboard(
                                                      firstString: 'Login Time',
-                                                     secondString: '9:30',
+                                                     secondString: dashboardData.personalInfo.todayAttStatus.loginTime,
                                                        theme:themeState
                                                    ),
                                                  )
@@ -554,6 +634,7 @@ style: ButtonStyle(
                                                                      DatePickingCubit>()
                                                                  .adjustDate(
                                                                      dateValue);
+                                                           context.read<AttendanceDataCubit>().loadAttendanceData("9112208", dateValue.month.toString(), dateValue.year.toString());
                                                              print(dateValue);
                                                            });
                                                          },
@@ -594,8 +675,13 @@ style: ButtonStyle(
                                                        ))
                                                      ],
                                                    ),
-                                                   SizedBox(height: 20.sp,),
-                                                   SfCartesianChart(
+                                                   BlocConsumer<AttendanceDataCubit, AttendanceDataState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, attendanceBuilder) {
+    if (attendanceBuilder is AttendanceDataLoaded) {
+      return SfCartesianChart(
                                                     // margin: EdgeInsets.symmetric(horizontal: 0),
 
 // legend: Legend(
@@ -634,7 +720,7 @@ style: ButtonStyle(
                                                          minimum: 0,
                                                          maximum: 10
                                                        ),
-                                                       plotAreaBorderColor: themeState==false?AppColors.greyColor:Colors.black87,
+                                                       plotAreaBorderColor: themeState==false?AppColors.greyColor:AppColors.blackColor87,
  plotAreaBackgroundColor: themeState==false?AppColors.primaryColor:AppColors.greyColor2,
                                                        series: <ChartSeries<Attendance, int>>[
                                                          // Renders column chart
@@ -648,7 +734,7 @@ style: ButtonStyle(
 borderColor:themeState==false? AppColors.primaryColor:Colors.transparent,
                                                            color: AppColors.blueContainerColor,
                                                            width: 0.7.sp,
-                                                             dataSource: chartData,
+                                                             dataSource: attendanceController.data.attendance,
                                                              xValueMapper: (Attendance data, _) => data.day,
                                                              yValueMapper: (Attendance data, _) => data.hours
 ,
@@ -663,7 +749,16 @@ borderColor:themeState==false? AppColors.primaryColor:Colors.transparent,
                                                          ),
 
                                                        ]
-                                                   ),
+                                                   );
+    }
+    else
+      {
+
+        return Center(child: SpinKitWave(color: AppColors.blueContainerColor,size: 30.sp,));
+      }
+  },
+),
+                                                   SizedBox(height: 20.sp,),
                                                    //SizedBox(height: 5.sp,),
 
 
@@ -759,10 +854,12 @@ borderColor:themeState==false? AppColors.primaryColor:Colors.transparent,
                                            ),
                                            SizedBox(height: 15.sp,),
 
-                                           Padding(
+                                           BlocBuilder<AttendanceDataCubit, AttendanceDataState>(
+  builder: (context, state) {
+    return Padding(
                                              padding:  EdgeInsets.only(left: 30.0.sp),
                                              child: Row(children: [
-                                               Expanded(child: RowWidgetDashboard2(value: '120', textToShow: 'Earned\nHours',),
+                                               Expanded(child: RowWidgetDashboard2(value: attendanceController.data.completedHours.toString(), textToShow: 'Earned\nHours',),
                                                  ),
                                                Flexible(
                                                    flex: 1,
@@ -778,16 +875,20 @@ height: 1.sp,
                                                ),
                                                      ),
                                                    )),
-                                               Expanded(child: RowWidgetDashboard2(value: '120', textToShow: 'Total\nAbsentees',),
+                                               Expanded(child: RowWidgetDashboard2(value: attendanceController.data.absentees.toString(), textToShow: 'Total\nAbsentees',),
                                                ),
 
                                              ],),
-                                           ),
+                                           );
+  },
+),
                                            SizedBox(height: 5.sp,),
-                                           Padding(
+                                           BlocBuilder<AttendanceDataCubit, AttendanceDataState>(
+  builder: (context, state) {
+    return Padding(
                                              padding:  EdgeInsets.only(left: 30.0.sp),
                                              child: Row(children: [
-                                               Expanded(child: RowWidgetDashboard2(value: '210', textToShow: 'Allowed\nLateMins',),
+                                               Expanded(child: RowWidgetDashboard2(value: attendanceController.data.allowedLateMin.toString(), textToShow: 'Allowed\nLateMins',),
                                                ),
                                                Flexible(
                                                    flex: 1,
@@ -803,11 +904,13 @@ height: 1.sp,
                                                        ),
                                                      ),
                                                    )),
-                                               Expanded(child: RowWidgetDashboard2(value: '5', textToShow: 'Used\nLateMins',),
+                                               Expanded(child: RowWidgetDashboard2(value: attendanceController.data.totalAdjustedLateMin.toString(), textToShow: 'Used\nLateMins',),
                                                ),
 
                                              ],),
-                                           ),
+                                           );
+  },
+),
                                            SizedBox(height: 30.sp,),
                                            Material(
                                              color: themeState==false? AppColors.whiteColor:Colors.black38,
@@ -911,7 +1014,7 @@ height: 1.sp,
                                                      ),
                                                      Center(
                                                          child: Text(
-                                                       "9112208",
+                                                       dashboardData.personalInfo.empId.toString(),
                                                        style: GoogleFonts.poppins(
                                                            fontSize: 18.sp,
                                                            fontWeight:
@@ -1011,7 +1114,7 @@ height: 1.sp,
                                                                  alignment: Alignment
                                                                      .bottomCenter,
                                                                  child: Text(
-                                                                   "9:30 am - 6:00 pm",
+                                                                   dashboardData.personalInfo.dutyTimings.toString(),
                                                                    style: GoogleFonts.poppins(
                                                                        fontSize:
                                                                            13.sp,
@@ -1069,7 +1172,7 @@ height: 1.sp,
                                                                              20.0.sp,
                                                                          top: 8.sp),
                                                                  child: Text(
-                                                                   "Dec 2021",
+                                                                   dashboardData.personalInfo.joinDate.toString(),
                                                                    style: GoogleFonts.poppins(
                                                                        color: Colors
                                                                            .white,
@@ -1107,7 +1210,18 @@ height: 1.sp,
                         ],
                       );
                     }, footer: veevoCopyRightWidget(), itemCount: 1,
-                  )
+                  );
+    }
+    else{
+
+      return  Center(child: SpinKitWave(
+size: 30.sp,
+        color: AppColors.blueContainerColor,
+
+      ));
+    }
+  },
+)
 
 
 

@@ -66,16 +66,16 @@ class ApplicationInfo extends StatelessWidget {
         decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(20.sp),
-            border: Border.all(color: AppColors.borderColorgrey)),
+            border: Border.all(color: AppColors.borderColorGrey)),
             child: ListView(shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 20.sp),
             children: [
               SizedBox(height: 15.sp,),
               ApplicationInfoContainer(cHeight: 20.sp, cColor: Colors.transparent, text1: 'Date: Wed Feb 08 2023', text2: 'Status: Pending',),
-Divider(color: AppColors.borderColorgrey,),
+Divider(color: AppColors.borderColorGrey,),
               ApplicationInfoContainer(cHeight: 40.sp, cColor: Colors.transparent, text1: 'Approved By Administrator', text2: '    0',),
-              Divider(color: AppColors.borderColorgrey,),
+              Divider(color: AppColors.borderColorGrey,),
               ApplicationInfoContainer(cHeight: 20.sp, cColor: Colors.transparent, text1: 'Approval Type', text2: 'Administrator',),
 
 

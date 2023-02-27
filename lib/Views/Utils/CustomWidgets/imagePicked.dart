@@ -85,7 +85,7 @@ bool visibilityChangeButton=false;
                decoration: BoxDecoration(
                    color: AppColors.primaryColor,
                    borderRadius: BorderRadius.circular(20)),
-               child: Image.asset(widget.imagePath,fit: BoxFit.fitWidth,height: (320).sp,width: 320.sp,)):SizedBox(height: 1.sp,),
+               child: Image.network(widget.imagePath,fit: BoxFit.fitHeight,height: (400).sp,width: 400.sp,)):SizedBox(height: 1.sp,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

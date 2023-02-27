@@ -229,7 +229,7 @@ class ChatScreen extends StatelessWidget {
                               height: 65.sp,
                              decoration: BoxDecoration(
                                color: AppColors.primaryColor,
-                               border: Border.all(color: AppColors.borderColorgrey)
+                               border: Border.all(color: AppColors.borderColorGrey)
 
                              ),
                               child: SingleChildScrollView(
@@ -252,7 +252,7 @@ class ChatScreen extends StatelessWidget {
                                               fontSize: 15.sp, color: Colors.black),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide:
-                                                BorderSide(color: AppColors.borderColorgrey),
+                                                BorderSide(color: AppColors.borderColorGrey),
                                           ),
                                           focusedBorder: const UnderlineInputBorder(
                                             borderSide:

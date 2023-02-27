@@ -1,3 +1,5 @@
+import 'package:empleado_development/Controller/Cubits/Attendance/attendance_data_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/DashboardCubits/dashboard_data_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/loginCubits/login_radiobutton_cubit.dart';
 import 'package:empleado_development/Controller/Repository/repo.dart';
 import 'package:empleado_development/Controller/UtilsData/app_controllers.dart';
@@ -159,6 +161,8 @@ SizedBox(height: 6.h,),
                                           color: AppColors.buttonColor,
 
                                           onPressed: (){
+                                         context.read<DashboardDataCubit>().loadDashboardData("9112208",DateTime.now().month.toString(),DateTime.now().year.toString());
+                                         context.read<AttendanceDataCubit>().loadAttendanceData("9112208",DateTime.now().month.toString(),DateTime.now().year.toString());
 
                                             Navigator.pushReplacement(context, CustomSlidePageRoute( direction: AxisDirection.left, child: const DashBoardScreen()));
 

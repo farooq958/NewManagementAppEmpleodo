@@ -1,5 +1,7 @@
 import 'package:empleado_development/Controller/Cubits/Application/ApplicationType/Leave/leave_detail_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/Attendance/attendance_data_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/DashboardCubits/animation_scale_dart_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/DashboardCubits/dashboard_data_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/PerformanceCubit/FeedBack/performance_page_view_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/PerformanceCubit/PerformancePageViewCubit/performance_page_view_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/Theme/theme_cubit.dart';
@@ -24,5 +26,7 @@ BlocProvider<AnimationScaleDartCubit>(create: (context)=>AnimationScaleDartCubit
   BlocProvider<LeaveDetailCubit>(create: (context)=>LeaveDetailCubit()),
   BlocProvider<ThemeCubit>(
       create: (context) => ThemeCubit()),
+  BlocProvider<DashboardDataCubit>(create: (context)=> DashboardDataCubit()),
+  BlocProvider<AttendanceDataCubit>(create: (context)=> AttendanceDataCubit())
 
 ];

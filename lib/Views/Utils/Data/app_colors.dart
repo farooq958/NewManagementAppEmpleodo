@@ -12,5 +12,6 @@ class AppColors{
   static Color redColor=const Color(0XffFF385C);
   static Color yellowColor=const Color(0xffFFC107);
   static Color purpleColor=const Color(0xff7F57F3);
-  static Color borderColorgrey=const Color(0xffE2E2E2);
+  static Color borderColorGrey=const Color(0xffE2E2E2);
+  static Color blackColor87=const Color(0xff222222);
 }

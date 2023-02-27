@@ -80,7 +80,7 @@ readOnly: true,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
         ),
         hintText: 'yyyy/mm/dd',
 
@@ -129,7 +129,7 @@ readOnly: true,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
         ),
         hintText: 'Choose In Time',
 
@@ -173,7 +173,7 @@ readOnly: true,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
         ),
         hintText: 'Choose Out Time',
 
@@ -213,7 +213,7 @@ readOnly: true,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
         ),
         hintText: 'Reason Description..',
         hintStyle: GoogleFonts.poppins(

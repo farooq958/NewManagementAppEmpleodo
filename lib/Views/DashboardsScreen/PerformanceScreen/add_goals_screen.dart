@@ -394,7 +394,7 @@ SizedBox(height: 5.sp,),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
         ),
         hintText: 'Goal Name',
         hintStyle: GoogleFonts.poppins(
@@ -416,7 +416,7 @@ SizedBox(height: 10.sp,),
               margin: EdgeInsets.symmetric(horizontal: 30.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(1.sp),
-                border: Border.all(color: AppColors.borderColorgrey)
+                border: Border.all(color: AppColors.borderColorGrey)
 
               ),
 
@@ -448,11 +448,11 @@ SizedBox(height: 10.sp,),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.sp),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide:
-          BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+          BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
         ),
         hintText: 'Goal Description',
         hintStyle: GoogleFonts.poppins(

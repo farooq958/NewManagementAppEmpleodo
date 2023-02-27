@@ -17,7 +17,7 @@ class AttendanceDetailsColumnWidget extends StatelessWidget {
       margin:  EdgeInsets.symmetric(horizontal: 3.0.sp),
       padding: EdgeInsets.only(left: 1.sw/3.3),
       height: 70.sp,decoration:
-    BoxDecoration(border: Border.all(color: AppColors.borderColorgrey),borderRadius: BorderRadius.circular(25.sp)),child: Column(children: [
+    BoxDecoration(border: Border.all(color: AppColors.borderColorGrey),borderRadius: BorderRadius.circular(25.sp)),child: Column(children: [
 
 
       Expanded(child: Row(
@@ -66,7 +66,7 @@ class AttendanceDetailsTwoRowWidget extends StatelessWidget {
         padding: EdgeInsets.only(left: 1.sw/19),
         width: 1.sw/2.2,
         height: 70.sp,decoration:
-      BoxDecoration(border: Border.all(color: AppColors.borderColorgrey),borderRadius: BorderRadius.circular(15.sp)),child: Column(children: [
+      BoxDecoration(border: Border.all(color: AppColors.borderColorGrey),borderRadius: BorderRadius.circular(15.sp)),child: Column(children: [
 
 
         Expanded(child: Row(

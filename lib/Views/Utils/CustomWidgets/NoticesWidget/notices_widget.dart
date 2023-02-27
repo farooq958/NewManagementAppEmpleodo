@@ -29,7 +29,7 @@ class ContainerListTileNoticeScreen extends StatelessWidget {
         height: fromDetail==true?1.sh/1.5:150.sp,
         width: 1.sw,
         decoration:BoxDecoration(
-            border: Border.all(color: AppColors.borderColorgrey),
+            border: Border.all(color: AppColors.borderColorGrey),
             borderRadius: BorderRadius.circular(10.sp)) ,
 
         child:  ListTile(

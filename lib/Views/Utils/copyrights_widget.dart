@@ -11,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
  Widget veevoCopyRightWidget() {
 return BlocBuilder<ThemeCubit, bool>(
   builder: (context, themeState) {
-    return Container(color:  themeState==false? AppColors.primaryColor:Colors.black87, height: 50.sp,width: 1.sw, child:
+    return Container(color:  themeState==false? AppColors.primaryColor:AppColors.blackColor87, height: 50.sp,width: 1.sw, child:
 Row(
 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
 children: <Widget>[

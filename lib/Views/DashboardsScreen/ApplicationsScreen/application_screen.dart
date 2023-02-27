@@ -49,7 +49,7 @@ class ApplicationScreen extends StatelessWidget {
 
       ),
       body: Container(
-        color: themeState==false?AppColors.greyColor:Colors.black87,
+        color: themeState==false? AppColors.whiteColor:Colors.black87,
         child: StickyFooterScrollView(footer: veevoCopyRightWidget(), itemBuilder: (context,index){
 
           return ListView(

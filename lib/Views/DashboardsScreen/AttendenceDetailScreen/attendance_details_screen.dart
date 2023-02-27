@@ -23,38 +23,38 @@ class AttendanceDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Attendance> chartData = [
-      Attendance( day: 1, hours: 5),
-      Attendance( day: 2, hours: 8),
-      Attendance( day: 3, hours: 6),
-      Attendance( day: 4, hours: 5),
-      Attendance( day: 5, hours: 7),
-      Attendance( day: 6, hours: 7),
-      Attendance( day: 7, hours: 8),
-      Attendance( day: 8, hours: 6),
-      Attendance( day: 9, hours: 5),
-      Attendance( day: 10, hours: 7),
-      Attendance( day: 11, hours: 7),
-      Attendance( day: 12, hours: 8),
-      Attendance( day: 13, hours: 6),
-      Attendance( day: 14, hours: 5),
-      Attendance( day: 15, hours: 7),
-      Attendance( day: 16, hours: 7),
-      Attendance( day: 17, hours: 8),
-      Attendance( day: 18, hours: 6),
-      Attendance( day: 19, hours: 5),
-      Attendance( day: 20, hours: 7),
-      Attendance( day: 21, hours: 7),
-      Attendance( day: 22, hours: 8),
-      Attendance( day: 23, hours: 6),
-      Attendance( day: 24, hours: 5),
-      Attendance( day: 25, hours: 7),
-      Attendance( day: 26, hours: 7),
-      Attendance( day: 27, hours: 8),
-      Attendance( day: 28, hours: 6),
-      Attendance( day: 29, hours: 5),
-      Attendance( day: 30, hours: 7),
-      Attendance( day: 31, hours: 7),
+    final List<Attendancedummy> chartData = [
+      Attendancedummy( day: 1, hours: 5),
+      Attendancedummy( day: 2, hours: 8),
+      Attendancedummy( day: 3, hours: 6),
+      Attendancedummy( day: 4, hours: 5),
+      Attendancedummy( day: 5, hours: 7),
+      Attendancedummy( day: 6, hours: 7),
+      Attendancedummy( day: 7, hours: 8),
+      Attendancedummy( day: 8, hours: 6),
+      Attendancedummy( day: 9, hours: 5),
+      Attendancedummy( day: 10, hours: 7),
+      Attendancedummy( day: 11, hours: 7),
+      Attendancedummy( day: 12, hours: 8),
+      Attendancedummy( day: 13, hours: 6),
+      Attendancedummy( day: 14, hours: 5),
+      Attendancedummy( day: 15, hours: 7),
+      Attendancedummy( day: 16, hours: 7),
+      Attendancedummy( day: 17, hours: 8),
+      Attendancedummy( day: 18, hours: 6),
+      Attendancedummy( day: 19, hours: 5),
+      Attendancedummy( day: 20, hours: 7),
+      Attendancedummy( day: 21, hours: 7),
+      Attendancedummy( day: 22, hours: 8),
+      Attendancedummy( day: 23, hours: 6),
+      Attendancedummy( day: 24, hours: 5),
+      Attendancedummy( day: 25, hours: 7),
+      Attendancedummy( day: 26, hours: 7),
+      Attendancedummy( day: 27, hours: 8),
+      Attendancedummy( day: 28, hours: 6),
+      Attendancedummy( day: 29, hours: 5),
+      Attendancedummy( day: 30, hours: 7),
+      Attendancedummy( day: 31, hours: 7),
 
 
 
@@ -71,7 +71,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
             statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
             statusBarBrightness: Brightness.light, // For iOS (dark icons)
           ),
-          backgroundColor: themeState==false?AppColors.primaryColor:Colors.black87,
+          backgroundColor: themeState==false?AppColors.primaryColor:AppColors.blackColor87,
           // automaticallyImplyLeading: true,
           centerTitle: true,
           title: Text("Attendance",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,color: themeState==false?AppColors.greyColor:Colors.white70),),
@@ -89,7 +89,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
       body: StickyFooterScrollView( itemBuilder: (context,index){
 
         return Container(
-          color: themeState==false?AppColors.whiteColor:Colors.black87,
+          color: themeState==false?AppColors.whiteColor:AppColors.blackColor87,
           child: ListView(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -222,20 +222,20 @@ class AttendanceDetailsScreen extends StatelessWidget {
                             labelStyle: GoogleFonts.poppins(color: themeState==false?AppColors.greyColor2:Colors.white70),
 
                           ),
-                          plotAreaBorderColor: themeState==false?AppColors.greyColor:Colors.black87,
+                          plotAreaBorderColor: themeState==false?AppColors.greyColor:AppColors.blackColor87,
                           plotAreaBackgroundColor: themeState==false?AppColors.primaryColor:AppColors.greyColor2,
-                          series: <ChartSeries<Attendance, int>>[
+                          series: <ChartSeries<Attendancedummy, int>>[
                             // Renders column chart
-                            ColumnSeries<Attendance,int>(
+                            ColumnSeries<Attendancedummy,int>(
 
                                 borderColor: AppColors.primaryColor,
                                 color: AppColors.blueContainerColor,
                                 width: 0.7.sp,
                                 dataSource: chartData,
-                                xValueMapper: (Attendance data, _) => data.day,
-                                yValueMapper: (Attendance data, _) => data.hours
+                                xValueMapper: (Attendancedummy data, _) => data.day,
+                                yValueMapper: (Attendancedummy data, _) => data.hours
                                 ,
-                                pointColorMapper: (Attendance data, _) => data.hours<=3?AppColors.redColor:data.hours<=6?AppColors.yellowColor:AppColors.greenColor,
+                                pointColorMapper: (Attendancedummy data, _) => data.hours<=3?AppColors.redColor:data.hours<=6?AppColors.yellowColor:AppColors.greenColor,
 
                                 markerSettings:  MarkerSettings(
                                     borderColor: AppColors.purpleColor,

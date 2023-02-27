@@ -57,6 +57,7 @@ dependencies:
   image_picker: ^0.8.4+2
   permission_handler: ^8.1.2
   image_cropper: ^3.0.1
+  flutter_spinkit: ^5.1.0
 
   #footer: ^0.0.4
 dev_dependencies:

@@ -56,7 +56,7 @@ class PayRollScreen extends StatelessWidget {
             SizedBox(height: 30.sp,),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.sp),
-              height: 200.sp,decoration: BoxDecoration(border: Border.all(color: AppColors.borderColorgrey),borderRadius: BorderRadius.circular(10.sp)),
+              height: 200.sp,decoration: BoxDecoration(border: Border.all(color: AppColors.borderColorGrey),borderRadius: BorderRadius.circular(10.sp)),
               child: ListView(physics: const NeverScrollableScrollPhysics(),shrinkWrap: true,children: [
 SizedBox(height:10.sp),
 
@@ -249,7 +249,7 @@ SizedBox(height: 20.sp,),
                 itemBuilder: (context,index){
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: 20.sp),
-                height: 200.sp,decoration: BoxDecoration(border: Border.all(color: AppColors.borderColorgrey),borderRadius: BorderRadius.circular(10.sp)),
+                height: 200.sp,decoration: BoxDecoration(border: Border.all(color: AppColors.borderColorGrey),borderRadius: BorderRadius.circular(10.sp)),
                 child: ListView(physics: const NeverScrollableScrollPhysics(),shrinkWrap: true,children: [
                   SizedBox(height:10.sp),
 

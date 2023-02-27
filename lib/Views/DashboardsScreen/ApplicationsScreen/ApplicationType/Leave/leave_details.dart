@@ -85,7 +85,7 @@ physics: const NeverScrollableScrollPhysics(),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+                    BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
                   ),
                   hintText: 'Subject',
 
@@ -126,7 +126,7 @@ physics: const NeverScrollableScrollPhysics(),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+                    BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
                   ),
 
                   hintText: 'Description...',
@@ -176,7 +176,7 @@ physics: const NeverScrollableScrollPhysics(),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+                    BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
                   ),
                   hintText: 'yyyy/mm/dd',
 
@@ -220,7 +220,7 @@ physics: const NeverScrollableScrollPhysics(),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: AppColors.borderColorgrey, width: 1.1.sp),
+                    BorderSide(color: AppColors.borderColorGrey, width: 1.1.sp),
                   ),
                   hintText: 'yyyy/mm/dd',
 
@@ -320,7 +320,7 @@ SizedBox(height: 10.sp,),
                       decoration: BoxDecoration(
                         color: AppColors.primaryColor
 ,
-                        border: Border.all(color: AppColors.borderColorgrey)
+                        border: Border.all(color: AppColors.borderColorGrey)
                           ,
                         borderRadius: BorderRadius.circular(10.sp)
                       ),
@@ -337,7 +337,7 @@ SizedBox(height: 10.sp,),
                         margin: EdgeInsets.symmetric(horizontal: 10.sp),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
-                            border: Border.all(color: AppColors.borderColorgrey)
+                            border: Border.all(color: AppColors.borderColorGrey)
 
                         ),
 
@@ -350,7 +350,7 @@ SizedBox(height: 10.sp,),
                       decoration: BoxDecoration(
                         color: AppColors.primaryColor,
                           borderRadius: BorderRadius.circular(10.sp),
-                          border: Border.all(color: AppColors.borderColorgrey)
+                          border: Border.all(color: AppColors.borderColorGrey)
 
                       ),
                       child: const CustomCheckBox()

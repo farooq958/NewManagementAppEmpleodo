@@ -1,7 +1,7 @@
 
 
-class Attendance {
-  Attendance({
+class Attendancedummy {
+  Attendancedummy({
     required this.day,
     required this.hours,
   });

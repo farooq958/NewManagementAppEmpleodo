@@ -134,7 +134,7 @@ class InboxScreen extends StatelessWidget {
                         ],
                       ),
                     )),
-                Divider(color: AppColors.borderColorgrey,)
+                Divider(color: AppColors.borderColorGrey,)
               ]);
         },
       ),
