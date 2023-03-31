@@ -36,7 +36,7 @@ class MyRadioGroup extends StatelessWidget {
               value: 1,
               groupValue:  radioState,
               onChanged: _handleRadioValueChange,
-              title:  Text('Otp',style: GoogleFonts.poppins(fontSize: 14.sp,color: AppColors.greyColor,fontWeight: FontWeight.w600),),
+              title:  Text('OTP',style: GoogleFonts.poppins(fontSize: 14.sp,color: AppColors.greyColor,fontWeight: FontWeight.w600),),
           ),
            ),
 

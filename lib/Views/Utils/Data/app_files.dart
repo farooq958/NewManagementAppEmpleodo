@@ -5,6 +5,7 @@ static const String taskAccelerateImage="assets/images/loginImage.png";
 static const String taskAndroidImage="assets/images/taskAndroidImage.png";
 static const String dashboardBackgroundImage="assets/images/dashboardBackground.png";
 static const String androidTaskAnimation="assets/images/androidTaskAnimation.gif";
+static const String iosTaskAnimation="assets/images/iosTaskAnimation.gif";
 }
 class AppIcons{
 

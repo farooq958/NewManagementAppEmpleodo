@@ -1,4 +1,7 @@
+import 'package:empleado_development/Controller/Cubits/Application/get_form_struct_cubit.dart';
 import 'package:empleado_development/Controller/Cubits/Theme/theme_cubit.dart';
+import 'package:empleado_development/Controller/Repository/repo.dart';
+import 'package:empleado_development/Controller/UtilsData/app_preferences.dart';
 import 'package:empleado_development/Views/DashboardsScreen/ApplicationsScreen/ApplicationType/Leave/leave_details.dart';
 import 'package:empleado_development/Views/Utils/CustomWidgets/DashboardWidgets/dashboard_utils.dart';
 import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
@@ -62,8 +65,10 @@ class ApplicationScreen extends StatelessWidget {
                 child: InkWell (
              
                     onTap: (){
-Navigator.push(context, CustomSlidePageRoute( child: const LeaveDetails() ,direction: AxisDirection.left));
 
+Navigator.push(context, CustomSlidePageRoute( child: const LeaveDetails() ,direction: AxisDirection.left));
+context.read<GetFormStructCubit>().getTheFormId(attributeName: "LEAVE_REQUEST",orgId: SharedPrefs.generalGetOrgId(),branchId:SharedPrefs.generalGetBranchId(),deptId: SharedPrefs.generalGetDepartId() );
+Repository().getEmployeeLeaveType();
                     },
 
                     child: ContainerListTileDashBoard(iconPath: AppIcons.applicationTypeLeaveIcon, titleText: "Leave")),

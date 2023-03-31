@@ -1,10 +1,16 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:empleado_development/Controller/Cubits/DashboardCubits/dashboard_data_cubit.dart';
+import 'package:empleado_development/Controller/Cubits/change_dp_cubit.dart';
+import 'package:empleado_development/Controller/UtilsData/app_preferences.dart';
+import 'package:empleado_development/Model/imageController.dart';
 import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
 import 'package:empleado_development/Views/Utils/Data/app_files.dart';
 import 'package:empleado_development/Views/Utils/Data/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -58,7 +64,33 @@ bool visibilityChangeButton=false;
 
 
       ),
-      body: SizedBox(
+      body: BlocListener<ChangeDpCubit, ChangeDpState>(
+  listener: (context, state) {
+    if(state is ChangeDpLoaded)
+      {
+        if(changerPic.status=="ok")
+          {
+
+            AppUtils.showCustomSnackBar(context: context, message: "Successfully Change Profile Picture ", color: AppColors.greenColor);
+            context.read<DashboardDataCubit>().loadDashboardData(SharedPrefs.generalGetEmpId(), DateTime.now().month.toString(), DateTime.now().year.toString());
+
+
+            Navigator.pop(context);
+          }}
+        else if (state is ChangeDpInternetError)
+          {
+            AppUtils.showCustomSnackBar(context: context, message: "No Internet ", color: AppColors.redColor);
+
+          }
+        else{
+
+      AppUtils.showCustomSnackBar(context: context, message: "Error Server ", color: AppColors.redColor);
+    }
+
+
+    // TODO: implement listener
+  },
+  child: SizedBox(
         height: 1.sh,
         width: 1.sw,
         child: ListView(
@@ -73,7 +105,7 @@ bool visibilityChangeButton=false;
                 decoration: BoxDecoration(
                    color: AppColors.primaryColor,
                     borderRadius: BorderRadius.circular(20)),
-                child: Image.file(_imageFile!,fit: BoxFit.fitWidth,height: (320).sp,
+                child: Image.file(_imageFile!,fit: BoxFit.fitWidth,height: (400).sp,
 
                   filterQuality: FilterQuality.high,
                 ),
@@ -85,17 +117,28 @@ bool visibilityChangeButton=false;
                decoration: BoxDecoration(
                    color: AppColors.primaryColor,
                    borderRadius: BorderRadius.circular(20)),
-               child: Image.network(widget.imagePath,fit: BoxFit.fitHeight,height: (400).sp,width: 400.sp,)):SizedBox(height: 1.sp,),
+               child: CachedNetworkImage(
+                 //dashboardData.personalInfo.dp,
+                 fit: BoxFit.cover,
+                 width: 400.sp,
+                 height: 400.sp,
+                 placeholder: (context, url) => Image.asset('assets/images/placeholder.jpeg'),
+                 errorWidget: (context, url,dynamic) => Image.asset('assets/images/placeholder.jpeg'),
+                 // errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                 //   return Image.asset('assets/images/placeholder.jpeg');
+                 // },
+                 imageUrl: widget.imagePath,
+               )):SizedBox(height: 1.sp,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
                   onPressed: () => _pickImage(ImageSource.camera),
-                  child: const Text('Take Photo'),
+                  child:  Text('Take Photo',style: GoogleFonts.poppins(color: AppColors.blueContainerColor,fontWeight: FontWeight.w600),),
                 ),
                 ElevatedButton(
                   onPressed: () => _pickImage(ImageSource.gallery),
-                  child: const Text('Choose From Gallery'),
+                  child:  Text('Choose From Gallery',style: GoogleFonts.poppins(color: AppColors.blueContainerColor,fontWeight: FontWeight.w600),),
                 ),
               ],
             ),
@@ -107,7 +150,10 @@ bool visibilityChangeButton=false;
                 child:  Visibility(
                   visible: visibilityChangeButton,
                   child: ElevatedButton(onPressed: () {
-                    AppUtils.showCustomSnackBar(context: context, message: "to be evaluated with backend");
+                    //print(_imageFile?.absolute);
+                 //   AppUtils.showCustomSnackBar(context: context, message: "to be evaluated with backend");
+                    context.read<ChangeDpCubit>().changeDp(SharedPrefs.generalGetEmpId(), _imageFile?.path);
+
                   }, child: Row(
       children: [
         Expanded(child: Center(child: FittedBox(child: Text("Confirm",style: GoogleFonts.poppins(color: AppColors.blueContainerColor,fontWeight: FontWeight.w600),)))),
@@ -120,6 +166,7 @@ bool visibilityChangeButton=false;
           ],
         ),
       ),
+),
     );
   }
 
@@ -133,7 +180,9 @@ bool visibilityChangeButton=false;
   Future<void> _pickImage(ImageSource source) async {
     final permissionStatus = await Permission.storage.request();
     if (permissionStatus == PermissionStatus.granted) {
-      final pickedFile = await ImagePicker().pickImage(source: source);
+      final pickedFile = await ImagePicker().pickImage(
+
+          source: source);
       if(pickedFile!=null) {
 
         final croppedFile = await _cropImage(File(pickedFile.path));
@@ -151,7 +200,7 @@ bool visibilityChangeButton=false;
       // });
       // ...
     } else {
-      AppUtils.showCustomSnackBar(context: context, message: "Please Grant Permission ");
+      AppUtils.showCustomSnackBar(context: context, message: "Please Grant Permission ",color: AppColors.redColor);
       // Handle permission denied
     }
   }
@@ -167,6 +216,7 @@ bool visibilityChangeButton=false;
        sourcePath: imageFile.path,
        aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
        compressQuality: 100,
+       compressFormat: ImageCompressFormat.png,
 
 
        uiSettings: [

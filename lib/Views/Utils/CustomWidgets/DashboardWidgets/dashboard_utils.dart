@@ -31,7 +31,7 @@ class RowWidgetDashboard2 extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: Container(
-                height: 50.sp,
+                height: 40.sp,
                 width: 55.sp,
                 decoration: BoxDecoration(color: AppColors.blueContainerColor,borderRadius: BorderRadius.circular(15.sp)
 
@@ -39,11 +39,13 @@ class RowWidgetDashboard2 extends StatelessWidget {
                 child: Center(child: Text(value,style: GoogleFonts.poppins(color: Colors.white,fontWeight: FontWeight.w600))),
               ),
             )),
-        Expanded(child: Padding(
+        Expanded(
+            flex: 2,
+            child: Padding(
           padding:  EdgeInsets.only(left: 8.sp),
           child: Align(
               alignment: Alignment.centerLeft,
-              child: FittedBox(child: Text(textToShow,style: GoogleFonts.poppins(color: themeState==false? AppColors.greyColor:Colors.white70,fontSize: 14.sp),))),
+              child: Text(textToShow,style: GoogleFonts.poppins(color: themeState==false? AppColors.greyColor:Colors.white70,fontSize: 12.sp),)),
         ))
 
       ],
@@ -95,12 +97,11 @@ class BuildColumnDashboard extends StatelessWidget {
             flex: 1,
             child: Align(
                 alignment: Alignment.topCenter,
-                child: FittedBox(
-                    child: Text(secondString,
-                        style: GoogleFonts.poppins(
-                            color: theme==false?AppColors.greyColor:Colors.white70,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600))))),
+                child: Text(secondString,
+                    style: GoogleFonts.poppins(
+                        color: theme==false?AppColors.greyColor:Colors.white70,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600)))),
       ],
     );
   }

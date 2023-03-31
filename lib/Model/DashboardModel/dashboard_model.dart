@@ -330,7 +330,7 @@ class TodayAttStatus {
   final String workingStatus;
   final String loginTime;
   final bool mobileAttendance;
-  final int signedIn;  ///this was changed from bool to int
+  final dynamic signedIn;  ///this was changed from bool to int
 
   factory TodayAttStatus.fromJson(Map<String, dynamic> json) => TodayAttStatus(
     currentStatus: json["current_status"],

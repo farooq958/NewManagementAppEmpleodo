@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:empleado_development/Views/Utils/Data/app_colors.dart';
 import 'package:empleado_development/Views/Utils/Data/app_files.dart';
 import 'package:empleado_development/Views/Utils/Data/utils.dart';
@@ -111,11 +113,11 @@ SizedBox(height: 25.sp,),
                     width: 200.w,
                     child: GifView.asset(
 
-                      'assets/images/androidTaskAnimation.gif',
+                    Platform.isAndroid?AppImages.androidTaskAnimation:  AppImages.iosTaskAnimation,
                       fit: BoxFit.fitHeight,
 //color: AppColors.primaryColor,
 
-                      frameRate: 20, // default is 15 FPS
+                      frameRate: 25, // default is 15 FPS
                     ),
                   )
 

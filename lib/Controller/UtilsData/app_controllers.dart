@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class AppControllers{
-
-  static final  TextEditingController loginEmpleadoIdController=  TextEditingController();
+static GlobalKey scaffoldKey=GlobalKey();
+  static final  TextEditingController loginEmpleadoEmailNumberController=  TextEditingController();
   static final  TextEditingController loginPinCodeController=  TextEditingController();
 static final PageController performanceController= PageController(initialPage: 0);
  static final TextEditingController dropDownController=TextEditingController();
@@ -20,6 +20,7 @@ static final TextEditingController leaveSubjectController= TextEditingController
   static final TextEditingController leaveFromController= TextEditingController();
   static final TextEditingController leaveUpToController= TextEditingController();
   static final TextEditingController chatMessageController= TextEditingController();
-
+  static final ScrollController chatScrollController= ScrollController();
+static final PageController inboxLeavePageViewController = PageController(initialPage: 0);
 
 }

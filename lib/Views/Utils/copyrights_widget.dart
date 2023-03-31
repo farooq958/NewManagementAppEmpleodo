@@ -33,3 +33,28 @@ GoogleFonts.poppins(fontWeight: FontWeight.w400,fontSize: 10.sp,color: themeStat
  ));
   },
 );}
+Widget veevoCopyRightWidgetForDrawer() {
+  return BlocBuilder<ThemeCubit, bool>(
+    builder: (context, themeState) {
+      return Container(color:  themeState==false? AppColors.primaryColor:AppColors.blackColor87, height: 50.sp,width: (1.sw/1.2).sp, child:
+      Row(
+//mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+
+              child: Align( alignment: Alignment.centerRight
+                  ,child: Image.asset(AppIcons.veevoTechLogo,
+                    width: 40.sp,height:25.sp ,))),
+          Expanded(
+              flex: 2,
+              child: Padding(
+                padding:  EdgeInsets.only(left: 8.0.sp),
+                child: Text('Powered by Veevo Tech',style:
+                GoogleFonts.poppins(fontWeight: FontWeight.w400,fontSize: 10.sp,color: themeState==false? AppColors.greyColor:Colors.white70),),
+              )
+
+          )
+        ],
+      ));
+    },
+  );}

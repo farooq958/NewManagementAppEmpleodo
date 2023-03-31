@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppUtils{
 
  static getString(int month) {
-    if (month == 1) {
+    if (month == 1 || month == 01) {
       return "January";
     } else if (month == 2) {
       return "February";
@@ -35,7 +35,7 @@ class AppUtils{
       return "December";
     }
   }
-
+ static List<String> selectedFilesLeaves = [];
 
 static formatStringForMonths(int month){
 
@@ -49,9 +49,28 @@ static formatStringForMonths(int month){
      return month.toString();
    }
  }
+ static String parseStringFromDate(String dateToEvaluate)
+ {
+   List<String> dateParts = dateToEvaluate.split('-');
+
+   if (dateParts[2].length == 1) {
+     dateParts[2] = '0${dateParts[2]}';
+   }
+
+   String correctedDateString = dateParts.join('-');
+   return correctedDateString;
+ }
 
 static DateTime parseDateFromString(String dateToEvaluate){
-   DateTime dateTimeCreatedAt = DateTime.parse(dateToEvaluate);
+   print(dateToEvaluate);
+   List<String> dateParts = dateToEvaluate.split('-');
+
+   if (dateParts[2].length == 1) {
+     dateParts[2] = '0${dateParts[2]}';
+   }
+
+   String correctedDateString = dateParts.join('-');
+   DateTime dateTimeCreatedAt = DateTime.parse(correctedDateString);
   // print("$dateTimeCreatedAt check");
    return dateTimeCreatedAt;
 
@@ -64,20 +83,27 @@ static DateTime parseDateFromString(String dateToEvaluate){
    return differenceInDays;
 
  }
-static List<DateTime> getDatesList()
+ static String leaveType="paid";
+ static bool isHalfDay=false;
+static List<Leave> getDatesList()
 {
 
-  final items = List<DateTime>.generate( AppUtils.getDifferenceInTwoDate
+  final items = List<Leave>.generate( AppUtils.getDifferenceInTwoDate
     (firstDate: AppUtils.parseDateFromString(AppControllers.leaveFromController.text)
       , secondDate:AppUtils.parseDateFromString(AppControllers.leaveUpToController.text))+1, (i) =>
-      AppUtils.parseDateFromString(AppControllers.leaveFromController.text).add(Duration(days: i)));
+  Leave(adjustData: (AppUtils.parseDateFromString(AppControllers.leaveFromController.text).add(Duration(days: i))), leaveType: AppUtils.leaveType, isHalfDay: isHalfDay==true?1:0));
+      //AppUtils.parseDateFromString(AppControllers.leaveFromController.text).add(Duration(days: i)));
   //print(items);
+
+ // final listOfHalfDays=List<dynamic>.generate(items.length, (index) => null);
   return items;
 }
+static List<Leave> leaveData=getDatesList();
 
  static showCustomSnackBar({
    required BuildContext context,
    required String message,
+   required Color color
    //required bool theme,
  }) {
    final customSnackBar = SnackBar(
@@ -90,7 +116,7 @@ static List<DateTime> getDatesList()
          fontWeight: FontWeight.w400,
        ),
      ),
-     backgroundColor: AppColors.blueContainerColor,
+     backgroundColor: color,
      behavior: SnackBarBehavior.floating,
    );
 
@@ -127,4 +153,112 @@ static ThemeData blueDarkTheme() {
      ),
    );
  }
+
+ static getTimeFromEpoch(timestamp)
+ {
+
+
+   var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000,isUtc: false);
+
+   return date;
+
+ }
+ static formatTimeForString(String time1,check)
+ {
+  DateTime date= getTimeFromEpoch(int.parse(time1));
+  if(check ==false)
+    {
+      return "${date.hour}:${date.minute}";
+    }
+  else {
+    return "${date.hour}hrs:${date.minute} min";
+  }
+ }
+ static formatSecondsToMinutes(seconds)
+
+ {
+ int returnVar = (seconds/60).toInt();
+ return "$returnVar min";
+
+ }
+ static formatEarnedHours(timeInSeconds)
+ {
+   var d = Duration(seconds:timeInSeconds);
+
+   return "${d.inHours} hrs:${d.inMinutes.remainder(60)} min";
+
+ }
+
+ static String  formatDateFromEpoch(String date)
+ {
+  DateTime dateData= AppUtils.getTimeFromEpoch(int.parse(date));
+
+
+  return "${dateData.year}-${dateData.month}-${dateData.day}";
+
+ }
+static String convertToUtcAndGetDurationTime(String time1, String time2) {
+   final time1Parts = time1.split(':');
+   final time2Parts = time2.split(':');
+
+   // Get the current date in the UTC timezone
+   final now = DateTime.now().toUtc();
+
+   // Create DateTime objects for time1 and time2
+   final time1UTC = DateTime.utc(now.year, now.month, now.day, int.parse(time1Parts[0]), int.parse(time1Parts[1]));
+   final time2UTC = DateTime.utc(now.year, now.month, now.day, int.parse(time2Parts[0]), int.parse(time2Parts[1]));
+
+   // Calculate the time difference in minutes
+   final diff = time2UTC.difference(time1UTC).inMinutes.abs();
+
+   // Format the result as hours and minutes
+   final hours = (diff / 60).floor();
+   final minutes = diff % 60;
+   final diffString = '$hours hrs and $minutes mins';
+
+   return diffString;
+ }
+static String addThumbToImageUrl(String url) {
+   RegExp exp = RegExp(r'(?<=/images/)([^]+)');
+  // print(url.replaceFirst(exp, '${exp.stringMatch(url)}/thumb_'));
+   return url.replaceFirst(exp, '${exp.stringMatch(url)}/thumb_');
+ }
+ static String formatDateForInbox(DateTime dt){
+
+   DateTime date = DateTime.parse(dt.toString());
+   List<String> weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+   List<String> months = [  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+   String result = '${weekdays[date.weekday ]} ${months[date.month - 1]} ${date.day} ${date.year}';
+   //print(result); // Output: wed mar 22
+return result;
+ }
+}
+
+
+class Leave {
+  final DateTime adjustData;
+    String leaveType;
+   int isHalfDay;
+
+  Leave({
+    required this.adjustData,
+    required this.leaveType,
+    required this.isHalfDay,
+  });
+
+  factory Leave.fromJson(Map<String, dynamic> json) {
+    return Leave(
+      adjustData: json['adjustData'],
+      leaveType: json['leaveType'],
+      isHalfDay: json['isHalfDay'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'adjustData': adjustData,
+      'leaveType': leaveType,
+      'isHalfDay': isHalfDay,
+    };
+  }
 }
